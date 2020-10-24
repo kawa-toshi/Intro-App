@@ -1,0 +1,38 @@
+.Flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 980px;
+    margin: 0 auto;
+    a {
+        display: block;
+    }
+    &:after {
+        content: "";
+        display: block;
+        width: 30%;
+        height: 0;
+    }
+}
+
+.Post-box {
+    width: 300px;
+    background-color: #fff;
+    margin: 10px;
+    &__title {
+        font-size: 24px;
+        margin: 10px 0;
+        font-weight: 600;
+    }
+    &__content {
+        height: 100px;
+    }
+}
+
+.Profile-box {
+    display: flex;
+    justify-content: space-between;
+    &__content {
+        display: flex;
+    }
+}

@@ -1,0 +1,133 @@
+.Flex {
+  width: 70%;
+  margin: 30px auto;
+}
+
+body {
+  background-color: #f4f5f7;
+}
+
+.Heading {
+  width: 200px;
+  font-size: 28px;
+  padding: 10px 0;
+  border-bottom: 1px solid black;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.Post-box {
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+.Post-box__title {
+  font-size: 30px;
+  margin: 10px 0;
+  font-weight: 600;
+  padding: 20px 0;
+}
+
+.Post-box__content {
+  min-height: 500px;
+  padding: 20px 0;
+  font-size: 20px;
+}
+
+.Profile-box {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.Profile-box__content {
+  display: flex;
+}
+
+.Btn-wrraper {
+  display: flex;
+  margin: 0 0 0 auto;
+  width: 80px;
+}
+
+.Comment {
+  margin: 10px auto;
+  background-color: #fff;
+  width: 60%;
+}
+
+.Comment__text {
+  margin: 20px 0 0 20px;
+  min-height: 50px;
+}
+
+.Comment-post {
+  margin-top: 20px;
+  width: 60%;
+  margin: 20px auto;
+  background-color: #fff;
+}
+
+.Comment-post__content {
+  display: flex;
+}
+
+.Comment-post__textarea {
+  width: 80%;
+  color: #fff;
+  display: block;
+  margin: 0 auto;
+  background-color: #d3d4d6;
+  line-height: 30px;
+}
+
+.Comment-post__textarea::-moz-placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Comment-post__textarea:-ms-input-placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Comment-post__textarea::placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+}
+
+.Comment-submit {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Empty-message {
+  width: 60%;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.Btn {
+  font-size: 14px;
+  display: block;
+  background-color: white;
+  width: 150px;
+  border-radius: 10px;
+  border: 1px solid blue;
+  padding: 10px;
+  margin: 10px 0 0 auto;
+}
+
+.Btn:hover {
+  background-color: blue;
+  color: white;
+}
+

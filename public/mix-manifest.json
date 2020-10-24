@@ -1,4 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/top-page.css": "/css/top-page.css"
+    "/css/top-page.css": "/css/top-page.css",
+    "/css/create.css": "/css/create.css",
+    "/css/index.css": "/css/index.css",
+    "/css/show.css": "/css/show.css"
 }

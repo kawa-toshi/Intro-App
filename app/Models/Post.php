@@ -13,6 +13,17 @@ class Post extends Model
         'content'
     ];
 
+    public function postStore(Int $user_id, Array $data)
+    {
+        $this->user_id = $user_id;
+        $this->title = $data['title'];
+        $this->content = $data['content'];
+        $this->save();
+
+        return;
+    }
+
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -20,7 +31,7 @@ class Post extends Model
 
     public function favorites()
     {
-        return $this->hasMany(Favorite::class);
+        return $this->hasMany(Favorite::class, 'post_id');
     }
 
     public function comments()

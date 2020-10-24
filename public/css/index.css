@@ -1,0 +1,44 @@
+.Flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 980px;
+  margin: 0 auto;
+}
+
+.Flex a {
+  display: block;
+}
+
+.Flex:after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 0;
+}
+
+.Post-box {
+  width: 300px;
+  background-color: #fff;
+  margin: 10px;
+}
+
+.Post-box__title {
+  font-size: 24px;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.Post-box__content {
+  height: 100px;
+}
+
+.Profile-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Profile-box__content {
+  display: flex;
+}
+

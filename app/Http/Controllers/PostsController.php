@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comment;
 
+
+
 class PostsController extends Controller
 {
     /**
@@ -16,8 +18,10 @@ class PostsController extends Controller
     public function index(Post $post)
     {
         $user = auth()->user();
+        $posts = Post::all();
         return view('posts.index', [
-            'user'      => $user
+            'user'      => $user,
+            'posts'     => $posts
             ]);
     }
 
@@ -40,9 +44,18 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $user = auth()->user();
+        $data = $request->all();
+        $rules =  [
+            'title' => ['required'],
+            'content' => ['required']
+        ];
+        $this->validate($request, $rules);
+
+        $post->postStore($user->id, $data);
+        return redirect('/posts');
     }
 
     /**
@@ -53,7 +66,16 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = auth()->user();
+        $post = Post::find($id);
+        // $comments = $comment->getComments($post->id);
+
+        return view('posts.show', [
+            'user'     => $user,
+            'post' => $post,
+            // 'comments' => $comments
+        ]);
+
     }
 
     /**
@@ -62,9 +84,12 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Post $post)
     {
-        //
+        $user = auth()->user();
+        $post = Post::find($id);
+
+        return view('posts.edit', ['post' => $post,'user' => $user]);
     }
 
     /**
@@ -74,9 +99,23 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $user = auth()->user();
+        $data = $request->all();
+        $post = Post::find($data['id']);
+        $rules =  [
+            'title' => ['required'],
+            'content' => ['required']
+        ];
+        $this->validate($request, $rules);
+        $post->fill([
+        'title' => $data['title'],
+        'content' => $data['content']
+        ]);
+        $post->save();
+
+        return redirect(route('post'));
     }
 
     /**
@@ -87,6 +126,16 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = auth()->user();
+
+
+        try{
+            // ブログを削除
+            Post::destroy($id);
+        } catch(\Throwable $e){
+            abort(500);
+        }
+
+        return redirect('/posts');
     }
 }

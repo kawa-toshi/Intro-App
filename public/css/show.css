@@ -77,7 +77,7 @@ body {
   color: #fff;
   display: block;
   margin: 0 auto;
-  background-color: #d3d4d6;
+  border: black 1px solid;
   line-height: 30px;
 }
 

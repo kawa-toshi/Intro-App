@@ -18,7 +18,7 @@
 }
 
 .Post-box {
-  width: 300px;
+  width: 30%;
   background-color: #fff;
   margin: 10px;
 }
@@ -40,5 +40,13 @@
 
 .Profile-box__content {
   display: flex;
+}
+
+.loved .fa-heart {
+  color: red;
+}
+
+.fa-heart {
+  color: red;
 }
 

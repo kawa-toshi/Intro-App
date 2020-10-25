@@ -59,4 +59,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/favorites/store', [FavoritesController::class, 'store'])->name('favorite-store');
 
     Route::post('/favorites/delete/{id}', [FavoritesController::class, 'destroy'])->name('favorite-delete');
+
+
+    Route::post('/ajaxlike', [PostsController::class,'ajaxlike'])->name('ajaxlike');
 });

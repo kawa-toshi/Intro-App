@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
   @stack('css')
   <script src="{{ mix('js/app.js') }}" defer></script>
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js" defer></script> -->
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" defer></script>
   <script src="{{ mix('js/ajaxlike.js') }}" defer></script>
 </head>
 

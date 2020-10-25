@@ -19,7 +19,12 @@
                 <img class="Profile-img" src="{{ $post -> user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                     <p>{{ $post -> user -> name}}</p>
                 </div>
-                <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
+
+                <div>
+                    <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
+                    <a class="js-like-toggle" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="far fa-heart heart-none"></i></a>
+                    <span class="likesCount">{{ count($post->favorites) }}</span>
+                </div>
             </div>
             <p class="Post-box__content">{{ $post -> content}}</p>
             @if ($post->user->id === Auth::user()->id)
@@ -37,6 +42,7 @@
             @endif
         </div>
     </div>
+
 
     <!-- コメントの一覧 -->
     <h1 class="Heading">COMMENT</h1>

@@ -29,8 +29,13 @@
         </div>
         <!-- いいねのajax処理 -->
         <div>
-          <a class="js-like-toggle" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="far fa-heart heart-none"></i></a>
+        @if (in_array($user->id, array_column($post->favorites->toArray(), 'user_id'), TRUE))
+          <a class="js-like-toggle loved" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
           <span class="likesCount">{{ count($post->favorites) }}</span>
+        @else
+          <a class="js-like-toggle" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
+          <span class="likesCount">{{ count($post->favorites) }}</span>
+        @endif
         </div>
       </div>
     </div>

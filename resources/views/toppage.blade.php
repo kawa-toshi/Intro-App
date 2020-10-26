@@ -1,7 +1,7 @@
 
 @extends('layouts/head')
 @push('css')
-  <link href="{{ asset('css/top-page.css') }}" rel="stylesheet">
+  <link href="{{ mix('css/top-page.css') }}" rel="stylesheet">
 @endpush
 
 <body>

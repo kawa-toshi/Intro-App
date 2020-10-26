@@ -1,6 +1,6 @@
 @extends('layouts/head')
 @push('css')
-    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/index.css') }}" rel="stylesheet">
 @endpush
 
 <x-app-layout>
@@ -27,6 +27,7 @@
           <i class="far fa-comment fa-fw"></i>
           <p class="mb-0 text-secondary">{{ count($post->comments) }}</p>
         </div>
+
         <!-- いいねのajax処理 -->
         <div>
         @if (in_array($user->id, array_column($post->favorites->toArray(), 'user_id'), TRUE))

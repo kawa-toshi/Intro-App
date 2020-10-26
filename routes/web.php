@@ -38,28 +38,22 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/posts', [PostsController::class, 'index'])->name('post');
 
 
-    // 投稿登録画面を表示
+    // 記事登録画面を表示
     Route::get('/posts/create', [PostsController::class, 'create'])->name('create');
-    // 投稿登録
+    // 記事登録
     Route::post('/posts', [PostsController::class, 'store'])->name('store');
-    // ブログ詳細画面を表示
+    // 記事詳細画面を表示
     Route::get('/posts/{id}', [PostsController::class, 'show'])->name('show');
-    // ブログ編集画面を表示
+    // 記事編集画面を表示
     Route::get('/posts/edit/{id}', [PostsController::class, 'edit'])->name('edit');
-    // ブログ更新
+    // 記事更新
     Route::post('/posts/update', [PostsController::class, 'update'])->name('update');
-    // ブログの削除
+    // 記事の削除
     Route::post('/posts/delete/{id}', [PostsController::class, 'destroy'])->name('delete');
 
     // コメントの登録
     Route::post('/posts/store', [CommentsController::class, 'store'])->name('comment-store');
 
-    //お気に入り機能
-
-    Route::post('/favorites/store', [FavoritesController::class, 'store'])->name('favorite-store');
-
-    Route::post('/favorites/delete/{id}', [FavoritesController::class, 'destroy'])->name('favorite-delete');
-
-
+    //ajaxいいね機能
     Route::post('/ajaxlike', [PostsController::class,'ajaxlike'])->name('ajaxlike');
 });

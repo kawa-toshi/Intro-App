@@ -26,7 +26,6 @@ class PostsController extends Controller
             'posts' => $posts,
             'like_model'=>$favorite_model,
         ];
-        
         return view('posts.index', [
             'user'      => $user,
             'posts'     => $posts
@@ -148,39 +147,35 @@ class PostsController extends Controller
     }
 
 
-   // ajaxのやつ
+   // ajaxのいいね機能
     public function ajaxlike(Request $request, Favorite $favorite)
     {
-        
         $user = auth()->user();
-        $id = $user->id;  // ユーザーのid
+        $id = $user->id;  // ログインユーザーのid
         $post_id = $request->post_id;  //記事のid
         $post = Post::find($post_id);  // 対応したポストの全てのデータ
-        $like = new Favorite;
-        $is_favorite = $favorite->isFavorite($user->id, $post_id);
-        //loadCountとすればリレーションの数を○○_countという形で取得できる（今回の場合はいいねの総数）
-        //  $kikiki = $post->favorites;
-        //  $postLikesCount = count($kikiki);
+        $is_favorite = $favorite->isFavorite($user->id, $post_id); // ログインユーザーがお気に入りしているか判定
 
-        // 空でないなら
+
+        // いいねしてなかったら
         if (!$is_favorite) {
-            //likesテーブルのレコードを削除
-            
+            //favoritesテーブルのレコードを作成
             $like = new Favorite;
             $like->post_id = $request->post_id;
             $like->user_id = $id;
             $like->save();
-
         } else {
-            //likesテーブルに新しいレコードを作成する
+            //favoritesテーブルのレコードを削除
             $like = Favorite::where('post_id', $post_id)->where('user_id', $id);
             $like->delete();
         }
-        $kikiki = $post->favorites;
-        $postLikesCount = count($kikiki);
+        // いいねを押した記事のfavoritesのデータを格納
+        $post_favorites = $post->favorites;
+        // いいねを押した記事のfavoritesテーブルの数を数える
+        $postLikesCount = count($post_favorites);
 
         //一つの変数にajaxに渡す値をまとめる
-        //今回ぐらい少ない時は別にまとめなくてもいいけど一応。笑
+        //今回ぐらい少ない時は別にまとめなくてもいいけど一応。
         $json = [
             'postLikesCount' => $postLikesCount,
         ];

@@ -17,6 +17,7 @@ mix.js("resources/js/app.js", "public/js")
     .sass("resources/sass/create.scss", "public/css")
     .sass("resources/sass/index.scss", "public/css")
     .sass("resources/sass/show.scss", "public/css");
+
 // .postCss(
 //     "resources/css/app.css",
 //     "public/css",

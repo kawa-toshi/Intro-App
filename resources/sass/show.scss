@@ -42,9 +42,8 @@ body {
 }
 
 .Btn-wrraper {
-    display: flex;
     margin: 0 0 0 auto;
-    width: 80px;
+    width: 20px;
 }
 
 .Comment {
@@ -67,13 +66,13 @@ body {
     }
     &__textarea {
         width: 80%;
-        color: #fff;
+        color: black;
         display: block;
         margin: 0 auto;
         border: black 1px solid;
         line-height: 30px;
         &::placeholder {
-            color: #fff;
+            color: black;
             line-height: 30px;
         }
     }
@@ -88,6 +87,20 @@ body {
 .Comment-submit {
     display: flex;
     justify-content: space-between;
+    &__btn {
+        font-size: 14px;
+        display: block;
+        background-color: white;
+        width: 150px;
+        border-radius: 10px;
+        border: 1px solid blue;
+        padding: 10px;
+        margin: 10px 0 0 auto;
+        &:hover {
+            background-color: blue;
+            color: white;
+        }
+    }
 }
 
 .Empty-message {
@@ -111,4 +124,17 @@ body {
         background-color: blue;
         color: white;
     }
+}
+
+// いいねのハート
+.loved .fa-heart {
+    color: red;
+}
+
+.fa-heart {
+    color: rgba(226, 223, 223, 0.432);
+}
+
+.Hide-message {
+    display: none;
 }

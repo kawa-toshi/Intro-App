@@ -1,8 +1,7 @@
 @extends('layouts/head')
 @push('css')
-    <link href="{{ asset('css/show.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/show.css') }}" rel="stylesheet">
 @endpush
-
 <!-- ヘッダー -->
 <x-app-layout>
   <x-slot name="header">
@@ -18,12 +17,19 @@
       <div class="Profile-box">
         <div class="Profile-box__content">
           <img class="Profile-img" src="{{ $post -> user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                  <p>{{ $post -> user -> name}}</p>
+          <p>{{ $post -> user -> name}}</p>
         </div>
         <div>
-                  <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
-                  <a class="js-like-toggle" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="far fa-heart heart-none"></i></a>
-                  <span class="likesCount">{{ count($post->favorites) }}</span>
+          <!-- 投稿日時 -->
+          <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
+          <!-- ajax いいね -->
+          @if (in_array($user->id, array_column($post->favorites->toArray(), 'user_id'), TRUE))
+            <a class="js-like-toggle loved" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
+            <span class="likesCount">{{ count($post->favorites) }}</span>
+          @else
+            <a class="js-like-toggle" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
+            <span class="likesCount">{{ count($post->favorites) }}</span>
+          @endif
         </div>
       </div>
       <p class="Post-box__content">{{ $post -> content}}</p>
@@ -46,31 +52,31 @@
 
   <!-- コメントの一覧 -->
   <h1 class="Heading">COMMENT</h1>
-  @forelse($post->comments as $comment)
-  <div class="Comment">
-    <div class="Profile-box">
-      <div class="Profile-box__content">
-        <img class="Profile-img" src="{{ $comment -> user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-        <div>
-          <p>{{ $comment -> user -> name}}</p>
-          <p>{{ $comment->created_at->format('Y-m-d H:i') }}</p>
+    @forelse($post->comments as $comment)
+    <div class="Comment">
+      <div class="Profile-box">
+        <div class="Profile-box__content">
+          <img class="Profile-img" src="{{ $comment -> user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+          <div>
+            <p>{{ $comment -> user -> name}}</p>
+            <p>{{ $comment->created_at->format('Y-m-d H:i') }}</p>
+          </div>
         </div>
       </div>
+      <div class="Comment__text">
+        <p>{{ $comment -> text}}</p>
+      </div>
+      @if ($comment->user->id === Auth::user()->id)
+      <div class="Btn-wrraper">
+        <form method="DELETE" action="{{ route('ajaxCommentDelete') }}">
+        @csrf
+            <button type="submit" id="commentDeleteBtn" data-comment_id="{{ $comment->id }}">
+              削除
+            </button>
+        </form>
+      </div>
+      @endif
     </div>
-    <div class="Comment__text">
-      <p>{{ $comment -> text}}</p>
-    </div>
-    @if ($comment->user->id === Auth::user()->id)
-    <div class="Btn-wrraper">
-      <a href="#">
-        <p>削除</p>
-      </a>
-      <a href="#">
-        <p>編集</p>
-      </a>
-    </div>
-    @endif
-  </div>
 
   @empty
   <div class="Empty-message">
@@ -78,21 +84,28 @@
   </div>
   @endforelse
 
+  <div id="Add-empty">
+  </div>
+
+  <div id="Add-comment">
+  </div>
+
   <!-- コメントの投稿 -->
   <div class="Comment-post">
-    <form method="POST" action="{{ route('comment-store') }}">
+    <form method="POST" action="{{ route('ajaxComment') }}">
       @csrf
       <div class="Comment-post__content">
         <img src="{{ $user ->profile_photo_url }}" class="Profile-img" width="50" height="50">
         <p class="">{{ $user->name }}</p>
       </div>
       <input type="hidden" name="post_id" value="{{ $post->id }}">
-      <textarea class="Comment-post__textarea" name="text" required autocomplete="text" placeholder="コメント">{{ old('text') }}</textarea>
+      <textarea class="Comment-post__textarea" id="Comment-post__textarea" name="text" required autocomplete="text" placeholder="コメント">{{ old('text') }}</textarea>
       <div class="Comment-submit">
-        <button type="submit" class="Btn">
+        <button type="submit" class="Comment-submit__btn" data-post_id="{{ $post->id }}">
           コメントする
         </button>
       </div>
     </form>
   </div>
 </x-app-layout>
+

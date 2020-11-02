@@ -182,4 +182,44 @@ class PostsController extends Controller
         //下記の記述でajaxに引数の値を返す
         return response()->json($json);
     }
+
+    // ajax コメント
+    public function ajaxComment(Request $request, Comment $comment)
+    {
+      $post_id = $request->post_id;   // コメントする投稿のID
+      $user = auth()->user();
+      $user_id = $user->id;  // コメントしたユーザーのID
+      $text = $request->text;  // コメントの内容
+      $profile_image = $user->profile_photo_path;
+      $user_name = $user->name;
+
+      $comment->user_id = $user_id;
+      $comment->post_id = $post_id;
+      $comment->text = $text;
+      $comment->save();
+      $created_at = $comment->created_at->format('Y-m-d H:i');
+      $comment_id = $comment->id;
+
+
+      $json = ["user_id" => $user_id, "post_id" => $post_id, "text" => $text, "created_at" => $created_at, "profile_image" => $profile_image, "user_name" => $user_name, "comment_id" => $comment_id];
+      return response()->json($json);
+
+    }
+
+    public function ajaxCommentDelete(Request $request)
+    {
+
+      $comment_id = $request->comment_id;
+      $user = auth()->user();
+      $comment = Comment::find($comment_id);
+
+      Comment::destroy($comment_id);
+
+
+
+
+      $json = ["comment_id" => $comment_id];
+      return response()->json($json);
+
+    }
 }

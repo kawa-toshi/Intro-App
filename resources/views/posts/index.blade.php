@@ -24,8 +24,11 @@
         </div>
         <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
         <div>
-          <i class="far fa-comment fa-fw"></i>
-          <p class="mb-0 text-secondary">{{ count($post->comments) }}</p>
+          <!-- コメントアイコンとコメント数 -->
+          <a href="/posts/{{ $post->id }}">
+            <i class="far fa-comment fa-fw"></i>
+            <p class="mb-0 text-secondary">{{ count($post->comments) }}</p>
+          </a>
         </div>
 
         <!-- いいねのajax処理 -->

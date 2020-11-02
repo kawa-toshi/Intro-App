@@ -52,8 +52,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/posts/delete/{id}', [PostsController::class, 'destroy'])->name('delete');
 
     // コメントの登録
-    Route::post('/posts/store', [CommentsController::class, 'store'])->name('comment-store');
+    Route::post('/posts/comments', [CommentsController::class, 'store'])->name('comment-store');
+    // コメントの削除
+    Route::post('/posts/comments/delete/{id}', [CommentsController::class, 'destroy'])->name('comment-delete');
 
     //ajaxいいね機能
     Route::post('/ajaxlike', [PostsController::class,'ajaxlike'])->name('ajaxlike');
+
+    //コメント登録 ajax
+    Route::post('/ajaxComment', [PostsController::class,'ajaxComment'])->name('ajaxComment');
+
+    //コメント削除 ajax
+    Route::delete('/ajaxCommentDelete', [PostsController::class,'ajaxCommentDelete'])->name('ajaxCommentDelete');
 });

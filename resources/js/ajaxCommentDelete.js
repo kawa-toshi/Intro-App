@@ -18,13 +18,27 @@ $(function() {
         })
             // 成功
             .done(function(data) {
-                // メッセージ無しのメッセージがあるかどうか判定
+                // コメントがありませんを作成
+                var html = `
+                <div class="Empty-message">
+                  <p>コメントはまだありません</p>
+                </div>
+              `;
+                // コメントがありませんのメッセージがあるかどうか判定
+                // あらかじめコメントが入っている場合
                 if ($(".Empty-message").length == 0) {
-                    console.log(data.comment_id);
-                    $this.parents(".Comment").remove();
-                } else {
+                    // さらにあらかじめコメントが一つの場合と複数の場合で判定
                     if ($(".Comment").length == 1) {
-                        $(".Empty-message").show(); // 最後のコメントが消された時だけメッセージ無しを表示する
+                        $this.parents(".Comment").remove();
+                        $("#Add-empty").append(html);
+                    } else {
+                        $this.parents(".Comment").remove();
+                    }
+                } else {
+                    // あらかじめコメントが入ってない場合
+                    // さらにコメントが追加された後の判定
+                    if ($(".Comment").length == 1) {
+                        $(".Empty-message").show();
                         $this.parents(".Comment").remove();
                     } else {
                         $this.parents(".Comment").remove();

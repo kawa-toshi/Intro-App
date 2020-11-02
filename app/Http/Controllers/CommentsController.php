@@ -91,6 +91,17 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $user = auth()->user();
+      $comment = Comment::find($id);
+      $post_id = $comment->post->id;
+
+      try{
+        // コメントを削除
+        Comment::destroy($id);
+    } catch(\Throwable $e){
+        abort(500);
+    }
+
+    return redirect(route('show',['id' => $post_id]));
     }
 }

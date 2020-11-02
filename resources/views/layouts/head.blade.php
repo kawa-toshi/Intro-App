@@ -9,6 +9,8 @@
   <script src="{{ mix('js/app.js') }}" defer></script>
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" defer></script>
   <script src="{{ mix('js/ajaxlike.js') }}" defer></script>
+  <script src="{{ mix('js/ajaxComment.js') }}" defer></script>
+  <script src="{{ mix('js/ajaxCommentDelete.js') }}" defer></script>
 </head>
 
 

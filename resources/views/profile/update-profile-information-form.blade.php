@@ -1,4 +1,5 @@
 <x-jet-form-section submit="updateProfileInformation">
+
     <x-slot name="title">
         ユーザー情報
     </x-slot>
@@ -38,19 +39,21 @@
                     </span>
                 </div>
 
+
                 <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                    {{ __('Select A New Photo') }}
+                    プロフィール写真を選択
                 </x-jet-secondary-button>
 
                 @if ($this->user->profile_photo_path)
                     <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                        {{ __('Remove Photo') }}
+                        プロフィール写真を削除
                     </x-jet-secondary-button>
                 @endif
 
                 <x-jet-input-error for="photo" class="mt-2" />
             </div>
         @endif
+
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
@@ -73,7 +76,8 @@
         </x-jet-action-message>
 
         <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            保存する
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>
+

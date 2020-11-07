@@ -10,7 +10,8 @@ class Post extends Model
     use HasFactory;
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'image_path'
     ];
 
     public function postStore(Int $user_id, Array $data)

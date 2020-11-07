@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Storage;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Favorite;
@@ -54,6 +55,9 @@ class PostsController extends Controller
     public function store(Request $request, Post $post)
     {
         $user = auth()->user();
+        $user_id = $user->id;
+        $image = $request->file('image_path');
+        $path = Storage::disk('s3')->putFile('post-image', $image, 'public');
         $data = $request->all();
         $rules =  [
             'title' => ['required'],
@@ -61,7 +65,12 @@ class PostsController extends Controller
         ];
         $this->validate($request, $rules);
 
-        $post->postStore($user->id, $data);
+        $post->image_path = Storage::disk('s3')->url($path);  // urlでs3の保存先urlを取得
+        $post->user_id = $user_id;
+        $post->title = $data['title'];
+        $post->content = $data['content'];
+        $post->save();
+        // $post->postStore($user->id, $data);
         return redirect('/posts');
     }
 
@@ -133,12 +142,18 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
+        $post = Post::find($id);
+        $image_path = $post->image_path;
         $user = auth()->user();
-
+        $disk = Storage::disk('s3');
+        $image_path_base = basename($image_path);
+        $files = $disk->exists($image_path_base);
+        $path = Storage::path($image_path_base);
+        
 
         try{
-            // ブログを削除
             Post::destroy($id);
+            $disk->delete('post-image/'.$image_path_base);
         } catch(\Throwable $e){
             abort(500);
         }

@@ -13,6 +13,9 @@
   <div class="Flex">
   @foreach($posts as $post)
     <div class="Post-box">
+      <div class="Post-box__image">
+          <img src="{{ $post->image_path }}" class="Post-box__image-content">
+      </div>
       <a href="/posts/{{ $post->id }}">
         <h2 class="Post-box__title">{{ $post -> title}}</h2>
       </a>
@@ -41,6 +44,7 @@
           <span class="likesCount">{{ count($post->favorites) }}</span>
         @endif
         </div>
+
       </div>
     </div>
   @endforeach

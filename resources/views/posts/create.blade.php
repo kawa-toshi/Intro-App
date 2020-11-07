@@ -12,7 +12,7 @@
 <div class="Wrapper">
   <div class="Wrapper__title">CREATE</div>
     <div class="Post-box">
-      <form method="POST" action="{{ route('store')}}" >
+      <form method="POST" action="{{ route('store')}}" enctype="multipart/form-data">
         @csrf
         <div class="Post-box__user">
           <img class="Post-box__img" src="{{ $user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
@@ -32,6 +32,7 @@
           </div>
           @endif
           <p class="">140文字以内</p>
+          <input type="file" name="image_path">
         </div>
 
           <div class="">

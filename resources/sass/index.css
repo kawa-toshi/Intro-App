@@ -1,7 +1,12 @@
 .Flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 980px;
   margin: 0 auto;
 }
@@ -45,11 +50,17 @@
 }
 
 .Profile-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .Profile-box__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -60,4 +71,4 @@
 .fa-heart {
   color: rgba(226, 223, 223, 0.432);
 }
-
+/*# sourceMappingURL=index.css.map */

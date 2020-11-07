@@ -1,0 +1,117 @@
+.Wrapper {
+  width: 50%;
+  margin: 0 auto;
+  background-color: white;
+  margin-top: 100px;
+}
+
+.Wrapper__title {
+  font-size: 28px;
+  display: inline-block;
+  border-bottom: 1px solid black;
+  text-align: center;
+  width: 200px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.Post-box__user {
+  font-size: 24px;
+  margin: 10px auto;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Post-box__user-name {
+  margin-left: 10px;
+  line-height: 50px;
+}
+
+.Post-box__content {
+  text-align: center;
+}
+
+.Post-box__content-title {
+  width: 80%;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.Post-box__content-title::-webkit-input-placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Post-box__content-title:-ms-input-placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Post-box__content-title::-ms-input-placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Post-box__content-title::placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Post-box__content-text {
+  width: 80%;
+  border: 1px solid black;
+  height: 200px;
+  margin: 10px;
+}
+
+.Post-box__content-text::-webkit-input-placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Post-box__content-text:-ms-input-placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Post-box__content-text::-ms-input-placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Post-box__content-text::placeholder {
+  color: #fff;
+  line-height: 30px;
+}
+
+.Post-box__img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.Btn {
+  text-align: center;
+  font-size: 20px;
+  display: block;
+  background-color: white;
+  width: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  border: 1px solid blue;
+}
+
+.Btn:hover {
+  background-color: blue;
+  color: white;
+}
+
+.Flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=create.css.map */

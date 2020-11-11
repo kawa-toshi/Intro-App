@@ -52,7 +52,11 @@
                         </div>
 
                         <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                            プロフィール
+                            マイページ
+                        </x-jet-dropdown-link>
+
+                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                            個人アカウント編集
                         </x-jet-dropdown-link>
 
                         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

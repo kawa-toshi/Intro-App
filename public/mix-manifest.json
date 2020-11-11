@@ -6,5 +6,6 @@
     "/css/top-page.css": "/css/top-page.css",
     "/css/create.css": "/css/create.css",
     "/css/index.css": "/css/index.css",
-    "/css/show.css": "/css/show.css"
+    "/css/show.css": "/css/show.css",
+    "/js/imagePreview.js": "/js/imagePreview.js"
 }

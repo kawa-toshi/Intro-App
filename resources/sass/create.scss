@@ -64,7 +64,6 @@
     width: 200px;
     padding: 20px;
     border-radius: 10px;
-    margin: 20px auto;
     border: 1px solid blue;
     &:hover {
         background-color: blue;
@@ -74,4 +73,66 @@
 
 .Flex {
     display: flex;
+    justify-content: space-around;
+    height: 100px;
+}
+
+// 画像アップロード
+.Image-field {
+    height: 50px;
+    display: block;
+    background-color: wheat;
+    width: 200px;
+    margin: 10px auto;
+    text-align: center;
+    line-height: 50px;
+}
+
+#Post-image {
+    display: none;
+}
+
+#PreviewArea {
+    margin: 20px 0;
+    &__image {
+        object-fit: cover;
+        margin: 0 auto;
+    }
+}
+
+// 投稿ボタン
+
+.Btn-gradient {
+    color: #fff;
+    border: 2px solid #fff;
+    font-size: 20px;
+    margin: 20px 0;
+    border-radius: 0;
+    background-image: linear-gradient(to right, #707efa 0%, #40e1fe 100%);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    line-height: 50px;
+    &:hover {
+        transform: translate(0, -2px);
+        color: #fff;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+    &--red {
+        background-image: linear-gradient(to right, #f38d8dfa 0%, #fe4040 100%);
+        color: #fff;
+        border: 2px solid #fff;
+        font-size: 20px;
+        margin: 20px 0;
+        border-radius: 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        width: 200px;
+        text-align: center;
+        line-height: 50px;
+        &:hover {
+            transform: translate(0, -2px);
+            color: #fff;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+    }
 }

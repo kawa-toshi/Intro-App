@@ -13,6 +13,7 @@
   <script src="{{ mix('js/ajaxlike.js') }}" defer></script>
   <script src="{{ mix('js/ajaxComment.js') }}" defer></script>
   <script src="{{ mix('js/ajaxCommentDelete.js') }}" defer></script>
+  <script src="{{ mix('js/imagePreview.js') }}" defer></script>
 </head>
 
 

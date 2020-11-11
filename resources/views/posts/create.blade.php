@@ -18,6 +18,12 @@
           <img class="Post-box__img" src="{{ $user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
           <p class="Post-box__user-name">{{ $user->name }}</p>
         </div>
+
+        <div id="PreviewArea"></div>
+        <label for="Post-image" class="Image-field">トップ画像を投稿できます
+          <input type="file" name="image_path"  id="Post-image">
+        </label>
+
         <div class="Post-box__content">
           <input type="text" class="Post-box__content-title" name="title" placeholder="アプリ名" required autocomplete="text" rows="4"></input>
           @if ($errors->has('title'))
@@ -32,15 +38,14 @@
           </div>
           @endif
           <p class="">140文字以内</p>
-          <input type="file" name="image_path">
         </div>
 
           <div class="">
               <div class="Flex">
-                  <a href="{{ route('post')}}" type="submit" class="Btn">
+                  <a href="{{ route('post')}}" type="submit" class="Btn-gradient--red">
                       キャンセル
                   </a>
-                  <button type="submit" class="Btn">
+                  <button type="submit" class="Btn-gradient">
                       投稿する
                   </button>
               </div>

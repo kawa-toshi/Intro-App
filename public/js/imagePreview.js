@@ -81,79 +81,52 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/ajaxlike.js":
-/*!**********************************!*\
-  !*** ./resources/js/ajaxlike.js ***!
-  \**********************************/
+/***/ "./resources/js/imagePreview.js":
+/*!**************************************!*\
+  !*** ./resources/js/imagePreview.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $(function () {
-  var like = $(".js-like-toggle");
-  var likePostId;
-  var canAjax = true; // 連打防止
+  var image_field = $('#Post-image');
+  image_field.on('change', function (e) {
+    var html = "\n                  <img id=\"PreviewArea__image\" style=\"width:300px;height:200px;\"></img>\n                ";
+    var image = $("#PreviewArea__image").length;
+    var file = e.target.files[0];
+    var reader = new FileReader(); //アップロードした画像を設定する
 
-  like.on("click", function () {
-    if (!canAjax) {
-      console.log('通信中');
-      return;
+    reader.onload = function (file) {
+      return function (e) {
+        // var image = $("#image").length;
+        console.log(image);
+        $("#PreviewArea__image").attr("src", e.target.result);
+      };
+    }(file);
+
+    reader.readAsDataURL(file);
+
+    if (image == 0) {
+      $("#PreviewArea").append(html);
     }
-
-    canAjax = false;
-    var $this = $(this);
-    likePostId = $this.data("post_id");
-    $.ajax({
-      headers: {
-        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-      },
-      url: "/ajaxlike",
-      //routeの記述
-      type: "POST",
-      //受け取り方法の記述
-      data: {
-        post_id: likePostId //コントローラーに渡すパラメーター
-
-      }
-    }) // 成功
-    .done(function (data) {
-      //lovedクラスを追加
-      $this.toggleClass("loved"); //.likesCountの次の要素のhtmlを「data.postLikesCount」の値に書き換える
-
-      $this.next(".likesCount").html(data.postLikesCount);
-
-      if ($this.hasClass("loved")) {
-        $this.addClass("Big");
-      } else {
-        $this.removeClass("Big");
-      }
-    }) // 失敗
-    .fail(function (data, xhr, err) {
-      // エラー内容を記述。
-      console.log("エラー");
-      console.log(err);
-      console.log(xhr);
-    }).always(function () {
-      canAjax = true;
-    });
-    return false;
   });
 });
 
 /***/ }),
 
-/***/ 1:
-/*!****************************************!*\
-  !*** multi ./resources/js/ajaxlike.js ***!
-  \****************************************/
+/***/ 4:
+/*!********************************************!*\
+  !*** multi ./resources/js/imagePreview.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/intro-app/resources/js/ajaxlike.js */"./resources/js/ajaxlike.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/intro-app/resources/js/imagePreview.js */"./resources/js/imagePreview.js");
 
 
 /***/ })

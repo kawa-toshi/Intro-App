@@ -1,13 +1,25 @@
 @extends('layouts/head')
 @push('css')
-    <link href="{{ mix('css/index.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/post/index.css') }}" rel="stylesheet">
 @endpush
 
 <x-app-layout>
+
   <x-slot name="header">
+    <div class="Flex">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
           投稿一覧
       </h2>
+      <a href="{{ route('post') }}">
+          投稿一覧
+      </a>
+      <a href="{{ route('create') }}">
+          新規投稿
+      </a>
+      <a href="/introductions/{{ $user->id }}">
+          マイページ
+      </a>
+      </div>
   </x-slot>
 
   <div class="Flex">
@@ -26,12 +38,14 @@
           <p>{{ $post -> user -> name}}</p>
         </div>
         <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
-        <div>
+        <div class="Profile-box__comment">
           <!-- コメントアイコンとコメント数 -->
-          <a href="/posts/{{ $post->id }}">
-            <i class="far fa-comment fa-fw"></i>
-            <p class="mb-0 text-secondary">{{ count($post->comments) }}</p>
-          </a>
+            <a href="/posts/{{ $post->id }}" class="">
+              <i class="far fa-comment fa-fw"></i>
+            </a>
+            <a href="/posts/{{ $post->id }}" class="">
+              <p class="mb-0 text-secondary">{{ count($post->comments) }}</p>
+           </a>
         </div>
 
         <!-- いいねのajax処理 -->

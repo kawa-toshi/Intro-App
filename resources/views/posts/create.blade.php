@@ -1,6 +1,6 @@
 @extends('layouts/head')
 @push('css')
-    <link href="{{ asset('css/create.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/post/create.css') }}" rel="stylesheet">
 @endpush
 <x-app-layout>
   <x-slot name="header">
@@ -8,6 +8,7 @@
       新規投稿画面
     </h2>
   </x-slot>
+
 
 <div class="Wrapper">
   <div class="Wrapper__title">CREATE</div>

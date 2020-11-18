@@ -1,6 +1,6 @@
 @extends('layouts/head')
 @push('css')
-    <link href="{{ mix('css/show.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/post/show.css') }}" rel="stylesheet">
 @endpush
 <!-- ヘッダー -->
 <x-app-layout>

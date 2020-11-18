@@ -16,10 +16,14 @@ mix.js("resources/js/app.js", "public/js")
     .js("resources/js/ajaxComment.js", "public/js")
     .js("resources/js/ajaxCommentDelete.js", "public/js")
     .js("resources/js/imagePreview.js", "public/js")
+    .js("resources/js/profile_image_preview.js", "public/js")
+    .js("resources/js/cover_image_preview.js", "public/js")
     .sass("resources/sass/top-page.scss", "public/css")
-    .sass("resources/sass/create.scss", "public/css")
-    .sass("resources/sass/index.scss", "public/css")
-    .sass("resources/sass/show.scss", "public/css");
+    .sass("resources/sass/create.scss", "public/css/post")
+    .sass("resources/sass/index.scss", "public/css/post")
+    .sass("resources/sass/show.scss", "public/css/post")
+    .sass("resources/sass/introduction_show.scss", "public/css/introduction")
+    .sass("resources/sass/introduction_create.scss", "public/css/introduction");
 
 // .postCss(
 //     "resources/css/app.css",

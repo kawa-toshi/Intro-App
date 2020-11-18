@@ -1,6 +1,6 @@
 @extends('layouts/head')
 @push('css')
-    <link href="{{ asset('css/create.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/post/create.css') }}" rel="stylesheet">
 @endpush
 
 

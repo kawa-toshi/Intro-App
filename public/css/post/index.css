@@ -18,9 +18,9 @@
 }
 
 .Post-box {
-  width: 30%;
+  width: 40%;
   background-color: #fff;
-  margin: 10px;
+  margin: 40px;
 }
 
 .Post-box__title {
@@ -50,6 +50,14 @@
 }
 
 .Profile-box__content {
+  display: flex;
+}
+
+.Profile-box__comment {
+  display: flex;
+}
+
+.LikeBox {
   display: flex;
 }
 

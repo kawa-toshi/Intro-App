@@ -4,8 +4,12 @@
     "/js/ajaxlike.js": "/js/ajaxlike.js",
     "/js/app.js": "/js/app.js",
     "/css/top-page.css": "/css/top-page.css",
-    "/css/create.css": "/css/create.css",
-    "/css/index.css": "/css/index.css",
-    "/css/show.css": "/css/show.css",
-    "/js/imagePreview.js": "/js/imagePreview.js"
+    "/css/post/create.css": "/css/post/create.css",
+    "/css/post/index.css": "/css/post/index.css",
+    "/css/post/show.css": "/css/post/show.css",
+    "/css/introduction/introduction_show.css": "/css/introduction/introduction_show.css",
+    "/css/introduction/introduction_create.css": "/css/introduction/introduction_create.css",
+    "/js/cover_image_preview.js": "/js/cover_image_preview.js",
+    "/js/imagePreview.js": "/js/imagePreview.js",
+    "/js/profile_image_preview.js": "/js/profile_image_preview.js"
 }

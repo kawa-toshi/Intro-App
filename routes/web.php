@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\IntroductionsController;
 
 
 
@@ -64,4 +65,13 @@ Route::group(['middleware' => 'auth'], function() {
 
     //コメント削除 ajax
     Route::delete('/ajaxCommentDelete', [PostsController::class,'ajaxCommentDelete'])->name('ajaxCommentDelete');
-});
+
+    //マイページ
+    // プロフィール登録画面の表示
+    Route::get('/introductions/create', [IntroductionsController::class, 'create'])->name('introduction-create');
+    // プロフィールの登録
+    Route::post('/introductions', [IntroductionsController::class, 'store'])->name('introduction-store');
+    // マイページ表示
+    Route::get('/introductions/{id}', [IntroductionsController::class, 'show'])->name('introduction');
+
+  });

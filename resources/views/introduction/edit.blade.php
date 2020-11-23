@@ -8,7 +8,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      プロフィール登録画面
+      プロフィール編集画面
     </h2>
   </x-slot>
 
@@ -23,7 +23,7 @@
   </div>
 
   <div class="Profile-area">
-    <img class="Profile-area__left" src="{{ $profile_photo_url }}"alt="{{ Auth::user()->name }}" />
+    <img class="Profile-area__left" src="{{ $user->profile_photo_url }}"alt="{{ Auth::user()->name }}" />
     <div id="Profile-preview-area"></div>
 
     <div class="Profile-area__right">
@@ -48,9 +48,9 @@
 <div class="Wrapper">
   <div class="Wrapper__title">PROFILE</div>
     <div class="Post-box">
-      <form method="POST" action="{{ route('introduction-store')}}" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('introduction-update')}}" enctype="multipart/form-data">
         @csrf
-
+        <input type="hidden" name="id" value="{{ $introduction_id }}">
         <div class="Post-box__profile-image">
           <p>プロフィール画像</p>
           <label for="Profile-image" class="Image-field">プロフィール画像を登録
@@ -78,7 +78,7 @@
               キャンセル
           </a>
           <button type="submit" class="Btn-gradient">
-              登録する
+              編集する
           </button>
         </div>
       </form>

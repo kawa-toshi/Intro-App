@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,5 +20,12 @@
   <script src="{{ mix('js/cover_image_preview.js') }}" defer></script>
 </head>
 
+<body>
 
+@yield('content')
 
+<footer class="Footer">
+    <p class="Footer__title">intro-app © 2020</p>
+</footer>
+</body>
+</html>

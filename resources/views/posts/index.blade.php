@@ -1,7 +1,12 @@
-@extends('layouts/head')
+
+@extends('layouts/master')
+
 @push('css')
     <link href="{{ mix('css/post/index.css') }}" rel="stylesheet">
 @endpush
+
+
+@section('content')
 
 <x-app-layout>
 
@@ -15,6 +20,7 @@
       </a>
       <a href="{{ route('create') }}">
           新規投稿
+          (まずはプロフィール登録！！ホップアップウィンドウ出す！！)
       </a>
       <a href="/introductions/{{ $user->id }}">
           マイページ
@@ -34,8 +40,11 @@
       <p class="Post-box__content">{{ $post -> content}}</p>
       <div class="Profile-box">
         <div class="Profile-box__content">
+          <a href="/introductions/{{ $post->user->id }}">
           <img class="h-8 w-8 rounded-full object-cover" src="{{ $post -> user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
           <p>{{ $post -> user -> name}}</p>
+          <p>{{ $post -> introductions}}</p>
+          </a>
         </div>
         <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
         <div class="Profile-box__comment">
@@ -65,4 +74,5 @@
 
   </div>
 </x-app-layout>
+@endsection
 

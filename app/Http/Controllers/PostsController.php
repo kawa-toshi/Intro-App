@@ -7,6 +7,7 @@ use Storage;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Favorite;
+use App\Models\Introduction;
 
 
 
@@ -21,6 +22,11 @@ class PostsController extends Controller
     {
         $user = auth()->user();
         $posts = Post::all();
+        
+        
+        
+
+         
         $data = [];
         $favorite_model = new Favorite;
         $data = [
@@ -119,16 +125,27 @@ class PostsController extends Controller
     {
         $user = auth()->user();
         $data = $request->all();
+
+        $id = $data['id'];
+        $image = $request->file('image_path');
+        
+        $path = Storage::disk('s3')->putFile('post-image', $image, 'public');
+        
         $post = Post::find($data['id']);
         $rules =  [
             'title' => ['required'],
             'content' => ['required']
         ];
         $this->validate($request, $rules);
+        $image_path = Storage::disk('s3')->url($path);  // urlでs3の保存先urlを取得
+        
         $post->fill([
         'title' => $data['title'],
-        'content' => $data['content']
+        'content' => $data['content'],
+        'image_path' => $image_path
         ]);
+        
+        
         $post->save();
 
         return redirect(route('post'));

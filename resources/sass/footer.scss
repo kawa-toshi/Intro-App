@@ -1,0 +1,12 @@
+.Footer {
+    background-color: white;
+    height: 10%;
+    &__title {
+        text-align: center;
+        color: rgb(55, 107, 248);
+        line-height: 80px;
+    }
+}
+main {
+    padding: 40px 0;
+}

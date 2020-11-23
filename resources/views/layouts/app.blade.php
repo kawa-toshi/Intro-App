@@ -12,11 +12,22 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 
         @livewireStyles
 
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.js" defer></script>
+        <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="//code.jquery.com/jquery-3.3.1.min.js" defer></script>
+        <script src="{{ mix('js/ajaxlike.js') }}" defer></script>
+        <script src="{{ mix('js/ajaxComment.js') }}" defer></script>
+        <script src="{{ mix('js/ajaxCommentDelete.js') }}" defer></script>
+        <script src="{{ mix('js/imagePreview.js') }}" defer></script>
+        <script src="{{ mix('js/profile_image_preview.js') }}" defer></script>
+        <script src="{{ mix('js/cover_image_preview.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

@@ -1,7 +1,10 @@
-@extends('layouts/head')
+@extends('layouts/master')
 @push('css')
     <link href="{{ asset('css/post/create.css') }}" rel="stylesheet">
 @endpush
+
+@section('content')
+
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -56,3 +59,5 @@
 </div>
 
 </x-app-layout>
+
+@endsection

@@ -1,0 +1,15 @@
+.Footer {
+  background-color: white;
+  height: 10%;
+}
+
+.Footer__title {
+  text-align: center;
+  color: #376bf8;
+  line-height: 80px;
+}
+
+main {
+  padding: 40px 0;
+}
+

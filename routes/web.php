@@ -71,6 +71,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/introductions/create', [IntroductionsController::class, 'create'])->name('introduction-create');
     // プロフィールの登録
     Route::post('/introductions', [IntroductionsController::class, 'store'])->name('introduction-store');
+    // 記事編集画面を表示
+    Route::get('/introductions/edit/{id}', [IntroductionsController::class, 'edit'])->name('introduction-edit');
+    // 記事更新
+    Route::post('/introductions/update', [IntroductionsController::class, 'update'])->name('introduction-update');
     // マイページ表示
     Route::get('/introductions/{id}', [IntroductionsController::class, 'show'])->name('introduction');
 

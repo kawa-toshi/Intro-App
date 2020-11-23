@@ -20,6 +20,7 @@ $(function(){
     })(file);
     reader.readAsDataURL(file);
     if(image == 0){
+    $("#PreviewArea__previous").hide();
     $("#PreviewArea").append(html);
     }
   });

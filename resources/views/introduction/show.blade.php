@@ -1,8 +1,9 @@
-@extends('layouts/head')
+@extends('layouts/master')
 @push('css')
     <link href="{{ mix('css/introduction/introduction_show.css') }}" rel="stylesheet">
 @endpush
 
+@section('content')
 
 <x-app-layout>
 
@@ -25,29 +26,29 @@
           プロフィール登録
       </a>
       @else
-      <a href="/introductions/create">
+      <a href="/introductions/edit/{{ $user->id }}">
           プロフィール編集
       </a>
       @endunless
     </nav>
   </x-slot>
 
-  @if($introduction_user)
+  @if($my_introduction)
   <div class="Cover-image-area">
     <img src="{{ $profile_cover_photo_url }}" class="Cover-image-area__content">
   </div>
   <!-- プロフィール登録なしの場合 -->
   @else
   <div class="Cover-image-area">
-    <p>画像が登録されていません</p>
+    <p>カバー画像が登録されていません</p>
   </div>
   @endif
 
   <div class="Profile-area">
-  @if($introduction_user)
+  @if($my_introduction)
     <img class="Profile-area__left" src="{{ $profile_photo_url }}" alt="{{ Auth::user()->name }}" />
   @else
-    <p>画像がありません</p>
+    <p class="Profile-area__left-none">画像がありません</p>
   @endif
     <div class="Profile-area__right">
       <div class="User">
@@ -55,7 +56,7 @@
         <button class="User__follow-btn"><i class="fas fa-user-plus"></i>フォロー</button>
       </div>
       <div class="User-detail">
-        @if($user->introduction)
+        @if($my_introduction)
         <p class="User-detail__content">
         {{ $profile_message }}
         </p>
@@ -116,4 +117,6 @@
 
   </div>
 </x-app-layout>
+
+@endsection
 

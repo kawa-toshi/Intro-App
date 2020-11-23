@@ -1,8 +1,11 @@
-@extends('layouts/head')
+@extends('layouts/master')
 @push('css')
     <link href="{{ mix('css/post/show.css') }}" rel="stylesheet">
 @endpush
 <!-- ヘッダー -->
+
+@section('content')
+
 <x-app-layout>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -108,4 +111,6 @@
     </form>
   </div>
 </x-app-layout>
+
+@endsection
 

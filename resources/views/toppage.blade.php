@@ -1,9 +1,9 @@
 
-@extends('layouts/head')
+@extends('layouts/master')
 @push('css')
   <link href="{{ mix('css/top-page.css') }}" rel="stylesheet">
 @endpush
-
+@section('content')
 <body>
   <div class="Wrapper">
     <div class="header">
@@ -44,11 +44,7 @@
         @endif
       <h1 class="Main__text-heading">Let's Share App!!</h1>
     </div>
-
-    <!-- フッター -->
-    <div class="Footer">
-      <p class="Footer__title">intro-app © 2020</p>
-    </div>
   </div>
+@endsection
 </body>
 </html>

@@ -30,6 +30,11 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function introductions()
+    {
+        return $this->belongsTo(Introduction::class);
+    }
+
     public function favorites()
     {
         return $this->hasMany(Favorite::class, 'post_id');

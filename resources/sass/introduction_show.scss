@@ -12,6 +12,14 @@
         height: 400px;
         width: 100%;
     }
+    p {
+        height: 400px;
+        width: 100%;
+        text-align: center;
+        line-height: 400px;
+        background-color: white;
+        border: 1px solid black;
+    }
 }
 .Profile-area {
     width: 60%;
@@ -22,7 +30,19 @@
     &__left {
         width: 100px;
         height: 100px;
+        margin: 0 10px;
         border-radius: 50px;
+    }
+    &__left-none {
+        width: 100px;
+        height: 100px;
+        margin: 0 10px;
+        border-radius: 50px;
+        background-color: yellow;
+        font-size: 4px;
+        line-height: 100px;
+        text-align: center;
+        background-color: whitesmoke;
     }
     &__right {
         margin-left: 20px;

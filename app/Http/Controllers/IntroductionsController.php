@@ -89,19 +89,22 @@ class IntroductionsController extends Controller
       // $idはuser_id
       $user = auth()->user();
       // プロフィール情報があれば格納 なければ null
-      $introduction_user = $user->introductions->first();
+      $introduction_user = $user->introductions->first();  // プロフィールが登録されているか
 
       $post = new Post();
       $introduction = new Introduction();
-      $my_introduction = $introduction->where('user_id', $id)->get()->first();  // プロフィールを取得
-      // プロフィール情報があるかどうかで場合わけ
-      if($introduction_user){
+      $my_introduction = $introduction->where('user_id', $id)->get()->first();  // プロフィールを取得 現在ログイン中のユーザーのプロフィール
+      
+      // プロフィール情報があってかつ現在ログイン中のユーザーのプロフィールがあるかどうかで場合わけ
+      
+      if($my_introduction){
       $my_profile_photo_url = $my_introduction->profile_image_path;  // プロフィール登録した画像取得
       $my_profile_cover_photo_url = $my_introduction->profile_cover_image_path;  // カバー画像取得
       $profile_message = $my_introduction->profile_message;
       $posts = $post->where('user_id', $id)->get();  // ログインユーザーの投稿した記事の取得
       return view('introduction.show', [
           'introduction_user'     => $introduction_user,
+          'my_introduction'   => $my_introduction,
           'user'     => $user,
           'posts' => $posts,
           'profile_photo_url' => $my_profile_photo_url,
@@ -113,6 +116,7 @@ class IntroductionsController extends Controller
 
         return view('introduction.show', [
           'introduction_user'     => $introduction_user,
+          'my_introduction'   => $my_introduction,
           'user'     => $user,
           'posts' => $posts
       ]);
@@ -125,9 +129,26 @@ class IntroductionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Introduction $introduction)
     {
-        //
+      $user = auth()->user();
+      $introduction = Introduction::find($id);
+      $user_id = $user->id;
+      $introduction = new Introduction();
+
+      $my_introduction = $introduction->where('user_id', $user_id)->get()->first();  // プロフィールを取得
+      $my_introduction_id = $my_introduction->id;
+      $my_profile_photo_url = $my_introduction->profile_image_path;  // プロフィール登録した画像取得
+      $my_profile_cover_photo_url = $my_introduction->profile_cover_image_path;  // カバー画像取得
+      $profile_message = $my_introduction->profile_message;
+
+      return view('introduction.edit', [
+        'user' => $user,
+        'introduction_id' => $my_introduction_id,
+        'profile_photo_url' => $my_profile_photo_url,
+        'profile_cover_photo_url' => $my_profile_cover_photo_url,
+        'profile_message' => $profile_message
+    ]);
     }
 
     /**
@@ -137,9 +158,30 @@ class IntroductionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Introduction $introduction)
     {
-        //
+      $user = auth()->user();
+      $data = $request->all();
+
+      $introduction = Introduction::find($data['id']);
+      $profile_image = $request->file('profile_image_path');
+      $cover_image = $request->file('profile_cover_image_path');
+
+      $profile_image_path = Storage::disk('s3')->putFile('profile-image', $profile_image, 'public');
+      $cover_image_path = Storage::disk('s3')->putFile('cover-image', $cover_image, 'public');
+
+      $profile_image_url = Storage::disk('s3')->url($profile_image_path);  // urlでs3の保存先urlを取得
+      $profile_cover_image_url = Storage::disk('s3')->url($cover_image_path);
+      
+
+      $introduction->fill([
+      'profile_cover_image_path' => $profile_cover_image_url,
+      'profile_image_path' => $profile_image_url,
+      'profile_message' => $data['profile_message']
+      ]);
+      $introduction->save();
+
+      return redirect(route('post'));
     }
 
     /**

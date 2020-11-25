@@ -6,6 +6,11 @@
   margin: 0 auto;
 }
 
+.Flex__top-menu {
+  margin: 0 30px;
+  font-size: 14px;
+}
+
 .Flex a {
   display: block;
 }
@@ -121,7 +126,7 @@
           animation: rotation 0.5s ease 0s 1 alternate none running;
 }
 
-.modal {
+.Profile-modal {
   display: none;
   height: 100vh;
   position: fixed;
@@ -129,14 +134,14 @@
   width: 100%;
 }
 
-.modal__bg {
+.Profile-modal__bg {
   background: rgba(0, 0, 0, 0.8);
   height: 100vh;
   position: absolute;
   width: 100%;
 }
 
-.modal__content {
+.Profile-modal__content {
   background: #fff;
   left: 50%;
   padding: 40px;
@@ -145,5 +150,18 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 60%;
+}
+
+.Profile-modal__content-title {
+  margin: 40px auto;
+  font-size: 30px;
+  width: 90%;
+}
+
+.Profile-modal__content-btn-box {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 100px auto;
 }
 

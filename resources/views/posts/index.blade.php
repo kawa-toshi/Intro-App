@@ -12,35 +12,36 @@
 
   <x-slot name="header">
     <div class="Flex">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight Flex__top-menu">
           投稿一覧
       </h2>
-      <a href="{{ route('post') }}">
+      <a href="{{ route('post') }}" class="Flex__top-menu">
           投稿一覧
       </a>
-      @unless($my_introduction)
-      <a href="{{ route('create') }}" id="introduction_pop">
+      <!-- ここifに変える -->
+      @if($my_introduction)
+      <a href="{{ route('create') }}"  class="Flex__top-menu">
           新規投稿
-          (まずはプロフィール登録！！ホップアップウィンドウ出す！！)
       </a>
       @else
-      <a href="#" id="introduction_pop">
-          ないよ
-          (まずはプロフィール登録！！ホップアップウィンドウ出す！！)
+      <a href="#" id="introduction_pop" class="Flex__top-menu">
+          新規投稿(この機能を利用するにはプロフィール登録が必要です)
       </a>
-      @endunless
-      <a href="/introductions/{{ $user->id }}">
+      @endif
+      <a href="/introductions/{{ $user->id }}" class="Flex__top-menu">
           マイページ
       </a>
       </div>
   </x-slot>
   <!-- プロフィール登録のポップアップ -->
-  <div class="modal js-modal">
-    <div class="modal__bg js-modal-close"></div>
-    <div class="modal__content">
-      <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
-      <a href="/introductions/create">プロフィール登録へ</a>
-      <a class="js-modal-close" href="">閉じる</a>
+  <div class="Profile-modal" id="js-modal">
+    <div class="Profile-modal__bg" id="js-modal-close"></div>
+    <div class="Profile-modal__content">
+      <p class="Profile-modal__content-title">新規投稿するには簡単なプロフィールの登録が必要です！！</p>
+      <div class="Profile-modal__content-btn-box" >
+        <a id="js-modal-close" class="Profile-modal__content-back Btn-gradient--red" href="">閉じる</a>
+        <a href="/introductions/create" class="Profile-modal__content-register Btn-gradient">プロフィール登録へ</a>
+      </div>
     </div><!--modal__inner-->
   </div><!--modal-->
 

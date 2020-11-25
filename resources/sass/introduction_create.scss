@@ -20,6 +20,14 @@
         height: 400px;
         width: 100%;
     }
+    p {
+        height: 400px;
+        width: 100%;
+        text-align: center;
+        line-height: 400px;
+        background-color: white;
+        border: 1px solid black;
+    }
 }
 // jsでここにpreview画像追加
 #Cover-preview-area {
@@ -39,6 +47,7 @@
         width: 100px;
         height: 100px;
         border-radius: 50px;
+        margin: 0 10px;
     }
 }
 
@@ -52,6 +61,16 @@
         width: 100px;
         height: 100px;
         border-radius: 50px;
+    }
+    &__left-none {
+        width: 100px;
+        height: 100px;
+        margin: 0 10px;
+        border-radius: 50px;
+        font-size: 4px;
+        line-height: 100px;
+        text-align: center;
+        background-color: whitesmoke;
     }
     &__right {
         margin-left: 20px;

@@ -21,8 +21,10 @@ class PostsController extends Controller
     public function index(Post $post)
     {
         $user = auth()->user();
+        $user_id = $user->id;
         $posts = Post::all();
-        
+        $introduction = new Introduction();
+        $my_introduction = $introduction->where('user_id', $user_id)->get()->first();  // プロフィールを取得
         
         
 
@@ -35,7 +37,8 @@ class PostsController extends Controller
         ];
         return view('posts.index', [
             'user'      => $user,
-            'posts'     => $posts
+            'posts'     => $posts,
+            'my_introduction' => $my_introduction
         ], $data);
     }
 
@@ -63,6 +66,7 @@ class PostsController extends Controller
         $user = auth()->user();
         $user_id = $user->id;
         $image = $request->file('image_path');
+        if($image){
         $path = Storage::disk('s3')->putFile('post-image', $image, 'public');
         $data = $request->all();
         $rules =  [
@@ -78,6 +82,23 @@ class PostsController extends Controller
         $post->save();
         // $post->postStore($user->id, $data);
         return redirect('/posts');
+      }else{
+
+        $data = $request->all();
+        $rules =  [
+            'title' => ['required'],
+            'content' => ['required']
+        ];
+        $this->validate($request, $rules);
+
+        
+        $post->user_id = $user_id;
+        $post->title = $data['title'];
+        $post->content = $data['content'];
+        $post->save();
+        // $post->postStore($user->id, $data);
+        return redirect('/posts');
+      }
     }
 
     /**

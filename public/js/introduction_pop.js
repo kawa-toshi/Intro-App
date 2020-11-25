@@ -81,55 +81,39 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/profile_image_preview.js":
-/*!***********************************************!*\
-  !*** ./resources/js/profile_image_preview.js ***!
-  \***********************************************/
+/***/ "./resources/js/introduction_pop.js":
+/*!******************************************!*\
+  !*** ./resources/js/introduction_pop.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 $(function () {
-  var image_field = $("#Profile-image");
-  image_field.on('change', function (e) {
-    var html = "\n                  <img id=\"Profile-preview-area__image\"></img>\n                ";
-    var image = $("#Profile-preview-area__image").length;
-    var file = e.target.files[0];
-    var reader = new FileReader(); //アップロードした画像を設定する
-
-    reader.onload = function (file) {
-      return function (e) {
-        // var image = $("#image").length;
-        console.log(image);
-        $("#Profile-preview-area__image").attr("src", e.target.result);
-      };
-    }(file);
-
-    reader.readAsDataURL(file);
-
-    if (image == 0) {
-      $("#Profile-preview-area").show();
-      $("#Profile-preview-area").append(html);
-      $(".Profile-area__left").hide();
-      $(".Profile-area__left-none").hide();
-    }
+  $('#introduction_pop').on('click', function () {
+    $('.js-modal').fadeIn();
+    return false;
+  });
+  $('.js-modal-close').on('click', function () {
+    $('.js-modal').fadeOut();
+    return false;
   });
 });
 
 /***/ }),
 
-/***/ 5:
-/*!*****************************************************!*\
-  !*** multi ./resources/js/profile_image_preview.js ***!
-  \*****************************************************/
+/***/ 7:
+/*!************************************************!*\
+  !*** multi ./resources/js/introduction_pop.js ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/intro-app/resources/js/profile_image_preview.js */"./resources/js/profile_image_preview.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/intro-app/resources/js/introduction_pop.js */"./resources/js/introduction_pop.js");
 
 
 /***/ })

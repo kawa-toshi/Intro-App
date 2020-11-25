@@ -35,19 +35,28 @@ class IntroductionsController extends Controller
       $user_id = $user->id;
       $introduction = new Introduction();
 
+      // null プロフィール登録してない場合
       $my_introduction = $introduction->where('user_id', $user_id)->get()->first();  // プロフィールを取得
+      
+      
+      if($my_introduction){
       $my_profile_photo_url = $my_introduction->profile_image_path;  // プロフィール登録した画像取得
       $my_profile_cover_photo_url = $my_introduction->profile_cover_image_path;  // カバー画像取得
       $profile_message = $my_introduction->profile_message;
-
-
 
       return view('introduction.create', [
           'user' => $user,
           'profile_photo_url' => $my_profile_photo_url,
           'profile_cover_photo_url' => $my_profile_cover_photo_url,
-          'profile_message' => $profile_message
+          'profile_message' => $profile_message,
+          'my_introduction' => $my_introduction  // プロフィール有無の判定用
       ]);
+      } else {
+        return view('introduction.create', [
+          'user' => $user,
+          'my_introduction' => $my_introduction
+        ]);
+      }
     }
 
     /**
@@ -132,7 +141,7 @@ class IntroductionsController extends Controller
     public function edit($id, Introduction $introduction)
     {
       $user = auth()->user();
-      $introduction = Introduction::find($id);
+      // $introduction = Introduction::find($id);
       $user_id = $user->id;
       $introduction = new Introduction();
 
@@ -166,6 +175,10 @@ class IntroductionsController extends Controller
       $introduction = Introduction::find($data['id']);
       $profile_image = $request->file('profile_image_path');
       $cover_image = $request->file('profile_cover_image_path');
+      // 問題 プロフィール画像登録のみ プロフィールメッセージ登録のみ カバー画像登録のみ プロフィール画像 メッセージのみ カバー画像 メッセージのみ
+
+      // プロフィール画像あり カバー画像あり
+      if($profile_image && $cover_image){
 
       $profile_image_path = Storage::disk('s3')->putFile('profile-image', $profile_image, 'public');
       $cover_image_path = Storage::disk('s3')->putFile('cover-image', $cover_image, 'public');
@@ -182,6 +195,45 @@ class IntroductionsController extends Controller
       $introduction->save();
 
       return redirect(route('post'));
+      // プロフィール画像なし カバー画像あり
+      }elseif($cover_image){
+
+
+        $cover_image_path = Storage::disk('s3')->putFile('cover-image', $cover_image, 'public');
+        $profile_cover_image_url = Storage::disk('s3')->url($cover_image_path);
+
+        $introduction->fill([
+        'profile_cover_image_path' => $profile_cover_image_url,
+        'profile_message' => $data['profile_message']
+        ]);
+        $introduction->save();
+
+        return redirect(route('post'));
+      // プロフィール画像あり カバー画像なし
+      }elseif($profile_image){
+      // 両方なし
+      $profile_image_path = Storage::disk('s3')->putFile('profile-image', $profile_image, 'public');
+
+      $profile_image_url = Storage::disk('s3')->url($profile_image_path);  // urlでs3の保存先urlを取得
+
+      $introduction->fill([
+      'profile_image_path' => $profile_image_url,
+      'profile_message' => $data['profile_message']
+      ]);
+
+      $introduction->save();
+
+      return redirect(route('post'));
+      }else{
+        $introduction->fill([
+          'profile_message' => $data['profile_message']
+          ]);
+
+          $introduction->save();
+
+          return redirect(route('post'));
+
+      }
     }
 
     /**

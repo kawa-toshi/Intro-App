@@ -44,21 +44,48 @@
      object-fit: cover;
 }
 
+.Post-box__image-content-none {
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  background-color: whitesmoke;
+  border: black solid 1px;
+}
+
 .Profile-box {
   display: flex;
   justify-content: space-between;
+  height: 80px;
+  border: 1px solid black;
 }
 
 .Profile-box__content {
   display: flex;
+  margin-top: 20px;
+  margin: 20px;
+}
+
+.Profile-box__content a {
+  display: block;
+}
+
+.Profile-box__day {
+  flex-grow: 3;
+  text-align: center;
+  line-height: 80px;
 }
 
 .Profile-box__comment {
   display: flex;
+  line-height: 80px;
+  flex-grow: 2;
 }
 
 .LikeBox {
   display: flex;
+  line-height: 80px;
+  flex-grow: 2;
 }
 
 @-webkit-keyframes rotation {
@@ -92,5 +119,31 @@
 .Big {
   -webkit-animation: rotation 0.5s ease 0s 1 alternate none running;
           animation: rotation 0.5s ease 0s 1 alternate none running;
+}
+
+.modal {
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.modal__bg {
+  background: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+}
+
+.modal__content {
+  background: #fff;
+  left: 50%;
+  padding: 40px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
 }
 

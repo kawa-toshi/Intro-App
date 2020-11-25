@@ -23,6 +23,7 @@ $(function(){
       $("#Profile-preview-area").show();
       $("#Profile-preview-area").append(html);
       $(".Profile-area__left").hide();
+      $(".Profile-area__left-none").hide();
     }
   });
 

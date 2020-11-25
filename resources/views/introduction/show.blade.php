@@ -80,7 +80,11 @@
 
     <div class="Post-box">
       <div class="Post-box__image">
-          <img src="{{ $post->image_path }}" class="Post-box__image-content">
+      @if($post->image_path)
+        <img src="{{ $post->image_path }}" class="Post-box__image-content">
+      @else
+        <p class="Post-box__image-content-none">画像が登録されていません</p>
+      @endif
       </div>
       <a href="/posts/{{ $post->id }}">
         <h2 class="Post-box__title">{{ $post -> title}}</h2>

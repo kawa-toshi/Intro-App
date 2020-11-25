@@ -28,6 +28,7 @@
         <script src="{{ mix('js/imagePreview.js') }}" defer></script>
         <script src="{{ mix('js/profile_image_preview.js') }}" defer></script>
         <script src="{{ mix('js/cover_image_preview.js') }}" defer></script>
+        <script src="{{ mix('js/introduction_pop.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

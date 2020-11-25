@@ -18,21 +18,41 @@
       <a href="{{ route('post') }}">
           投稿一覧
       </a>
-      <a href="{{ route('create') }}">
+      @unless($my_introduction)
+      <a href="{{ route('create') }}" id="introduction_pop">
           新規投稿
           (まずはプロフィール登録！！ホップアップウィンドウ出す！！)
       </a>
+      @else
+      <a href="#" id="introduction_pop">
+          ないよ
+          (まずはプロフィール登録！！ホップアップウィンドウ出す！！)
+      </a>
+      @endunless
       <a href="/introductions/{{ $user->id }}">
           マイページ
       </a>
       </div>
   </x-slot>
+  <!-- プロフィール登録のポップアップ -->
+  <div class="modal js-modal">
+    <div class="modal__bg js-modal-close"></div>
+    <div class="modal__content">
+      <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+      <a href="/introductions/create">プロフィール登録へ</a>
+      <a class="js-modal-close" href="">閉じる</a>
+    </div><!--modal__inner-->
+  </div><!--modal-->
 
   <div class="Flex">
   @foreach($posts as $post)
     <div class="Post-box">
       <div class="Post-box__image">
+          @if($post->image_path)
           <img src="{{ $post->image_path }}" class="Post-box__image-content">
+          @else
+          <p class="Post-box__image-content-none">画像が登録されていません</p>
+          @endif
       </div>
       <a href="/posts/{{ $post->id }}">
         <h2 class="Post-box__title">{{ $post -> title}}</h2>
@@ -41,19 +61,18 @@
       <div class="Profile-box">
         <div class="Profile-box__content">
           <a href="/introductions/{{ $post->user->id }}">
-          <img class="h-8 w-8 rounded-full object-cover" src="{{ $post -> user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-          <p>{{ $post -> user -> name}}</p>
-          <p>{{ $post -> introductions}}</p>
+            <img class="h-8 w-8 rounded-full object-cover" src="{{ $post -> user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+            <p>{{ $post -> user -> name}}</p>
           </a>
         </div>
-        <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
+        <p class="Profile-box__day">{{ $post->created_at->format('Y-m-d H:i') }}</p>
         <div class="Profile-box__comment">
           <!-- コメントアイコンとコメント数 -->
             <a href="/posts/{{ $post->id }}" class="">
               <i class="far fa-comment fa-fw"></i>
             </a>
             <a href="/posts/{{ $post->id }}" class="">
-              <p class="mb-0 text-secondary">{{ count($post->comments) }}</p>
+              <p class="mb-0 tex">{{ count($post->comments) }}</p>
            </a>
         </div>
 

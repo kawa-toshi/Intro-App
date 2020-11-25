@@ -15,15 +15,26 @@
 
   <div class="Preview-box">
     <h2 class="Preview-box__title">PREVIEW</h2>
+  @if($my_introduction)
   <div class="Cover-image-area">
     <img src="{{ $profile_cover_photo_url }}" class="Cover-image-area__content">
   </div>
+  @else
+  <div class="Cover-image-area">
+    <p>カバー画像が登録されていません</p>
+  </div>
+  @endif
 
   <div id="Cover-preview-area">
   </div>
 
   <div class="Profile-area">
+    <!-- プロフィールがあるかどうかで判定 改善 -->
+    @if($my_introduction)
     <img class="Profile-area__left" src="{{ $profile_photo_url }}"alt="{{ Auth::user()->name }}" />
+    @else
+    <p class="Profile-area__left-none">画像がありません</p>
+    @endif
     <div id="Profile-preview-area"></div>
 
     <div class="Profile-area__right">

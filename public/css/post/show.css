@@ -21,7 +21,34 @@ body {
   margin-top: 10px;
 }
 
+.Post-box__image-content {
+  height: 500px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.Post-box__image-content-none {
+  height: 500px;
+  width: 100%;
+  text-align: center;
+  line-height: 500px;
+  background-color: whitesmoke;
+  border: black solid 1px;
+}
+
 .Post-box__title {
+  font-size: 20px;
+  margin: 10px 0;
+  font-weight: 600;
+  padding: 20px 0;
+}
+
+.Post-box__title-box {
+  display: flex;
+}
+
+.Post-box__heading {
   font-size: 30px;
   margin: 10px 0;
   font-weight: 600;
@@ -46,7 +73,11 @@ body {
 
 .Btn-wrraper {
   margin: 0 0 0 auto;
-  width: 20px;
+  display: flex;
+}
+
+.Btn-wrraper a {
+  display: block;
 }
 
 .Comment {

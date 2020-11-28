@@ -71,20 +71,47 @@ class IntroductionsController extends Controller
         $user_id = $user->id;
         $profile_image = $request->file('profile_image_path');
         $cover_image = $request->file('profile_cover_image_path');
-        $profile_image_path = Storage::disk('s3')->putFile('profile-image', $profile_image, 'public');
-        $cover_image_path = Storage::disk('s3')->putFile('cover-image', $cover_image, 'public');
         $data = $request->all();
-        
+        if($profile_image && $cover_image){
+          $profile_image_path = Storage::disk('s3')->putFile('profile-image', $profile_image, 'public');
+          $cover_image_path = Storage::disk('s3')->putFile('cover-image', $cover_image, 'public');
+          $introduction->profile_image_path = Storage::disk('s3')->url($profile_image_path);  // urlでs3の保存先urlを取得
+          $introduction->profile_cover_image_path = Storage::disk('s3')->url($cover_image_path);
+          $introduction->user_id = $user_id;
+          $introduction->profile_message = $data['profile_message'];
 
-
-        $introduction->profile_image_path = Storage::disk('s3')->url($profile_image_path);  // urlでs3の保存先urlを取得
-        $introduction->profile_cover_image_path = Storage::disk('s3')->url($cover_image_path);
-        $introduction->user_id = $user_id;
-        $introduction->profile_message = $data['profile_message'];
-        
-        $introduction->save();
+          $introduction->save();
         // $post->postStore($user->id, $data);
-        return redirect('/posts');
+          return redirect('/posts');
+        }elseif($cover_image){
+          $cover_image_path = Storage::disk('s3')->putFile('cover-image', $cover_image, 'public');
+          $introduction->profile_cover_image_path = Storage::disk('s3')->url($cover_image_path);
+          $introduction->user_id = $user_id;
+          $introduction->profile_message = $data['profile_message'];
+
+          $introduction->save();
+          // $post->postStore($user->id, $data);
+          return redirect('/posts');
+        }elseif($profile_image){
+          $profile_image_path = Storage::disk('s3')->putFile('profile-image', $profile_image, 'public');
+          $introduction->profile_image_path = Storage::disk('s3')->url($profile_image_path);  // urlでs3の保存先urlを取得
+          $introduction->user_id = $user_id;
+          $introduction->profile_message = $data['profile_message'];
+          $introduction->save();
+        // $post->postStore($user->id, $data);
+          return redirect('/posts');
+
+        }else{
+          $introduction->user_id = $user_id;
+          $introduction->profile_message = $data['profile_message'];
+          $introduction->save();
+          // $post->postStore($user->id, $data);
+          return redirect('/posts');
+        }
+        
+
+
+        
     }
 
     /**
@@ -103,6 +130,7 @@ class IntroductionsController extends Controller
       $post = new Post();
       $introduction = new Introduction();
       $my_introduction = $introduction->where('user_id', $id)->get()->first();  // プロフィールを取得 現在ログイン中のユーザーのプロフィール
+      
       
       // プロフィール情報があってかつ現在ログイン中のユーザーのプロフィールがあるかどうかで場合わけ
       

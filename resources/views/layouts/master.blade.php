@@ -6,9 +6,9 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>intro-app</title>
   <!-- 本番ではsecure_asset -->
-  <link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}">
+  <!-- <link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}">
   <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/footer.css') }}"> -->
   @stack('css')
   <script src="{{ mix('js/app.js') }}" defer></script>
   <script src="//code.jquery.com/jquery-3.3.1.min.js" defer></script>

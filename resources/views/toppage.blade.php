@@ -1,5 +1,8 @@
 
 @extends('layouts/master')
+<link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}">
+<link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 @push('css')
   <link href="{{ mix('css/top-page.css') }}" rel="stylesheet">
 @endpush

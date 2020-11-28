@@ -21,10 +21,20 @@ class PostsController extends Controller
     public function index(Post $post)
     {
         $user = auth()->user();
+
         $user_id = $user->id;
+
         $posts = Post::all();
+        $introductions = Introduction::all();
+        
         $introduction = new Introduction();
+        
+        // ユーザーとプロフィールを結びつける？
+        // ポスト一つをとる
+        
         $my_introduction = $introduction->where('user_id', $user_id)->get()->first();  // プロフィールを取得
+        // postのイントロダクションをとる
+        
         
         
 
@@ -38,8 +48,10 @@ class PostsController extends Controller
         return view('posts.index', [
             'user'      => $user,
             'posts'     => $posts,
-            'my_introduction' => $my_introduction
+            'my_introduction' => $my_introduction,
+            'introductions' => $introductions
         ], $data);
+      
     }
 
     /**
@@ -65,6 +77,10 @@ class PostsController extends Controller
     {
         $user = auth()->user();
         $user_id = $user->id;
+        $introduction = new Introduction();
+        $my_introduction = $introduction->where('user_id', $user_id)->get()->first();  // プロフィールを取得
+        $introduction_id = $my_introduction->id;
+
         $image = $request->file('image_path');
         if($image){
         $path = Storage::disk('s3')->putFile('post-image', $image, 'public');
@@ -76,6 +92,7 @@ class PostsController extends Controller
         $this->validate($request, $rules);
 
         $post->image_path = Storage::disk('s3')->url($path);  // urlでs3の保存先urlを取得
+        $post->introduction_id = $introduction_id;
         $post->user_id = $user_id;
         $post->title = $data['title'];
         $post->content = $data['content'];
@@ -93,6 +110,7 @@ class PostsController extends Controller
 
         
         $post->user_id = $user_id;
+        $post->introduction_id = $introduction_id;
         $post->title = $data['title'];
         $post->content = $data['content'];
         $post->save();
@@ -243,7 +261,9 @@ class PostsController extends Controller
       $user = auth()->user();
       $user_id = $user->id;  // コメントしたユーザーのID
       $text = $request->text;  // コメントの内容
-      $profile_image = $user->profile_photo_path;
+      $introduction = new Introduction();
+      $my_introduction = $introduction->where('user_id', $user_id)->get()->first();
+      $profile_image = $my_introduction->profile_image_path;
       $user_name = $user->name;
 
       $comment->user_id = $user_id;

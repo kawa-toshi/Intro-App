@@ -29,7 +29,7 @@ class AddUserIdToIntroductionsTable extends Migration
     public function down()
     {
         Schema::table('introductions', function (Blueprint $table) {
-          $table->dropColumn('user_id');
+          $table->dropColumn('user_id');  //カラムの削除
         });
     }
 }

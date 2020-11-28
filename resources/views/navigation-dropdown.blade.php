@@ -58,10 +58,6 @@
                             アカウント設定
                         </div>
 
-                        <x-jet-dropdown-link href="/introductions/">
-                          マイページ
-                        </x-jet-dropdown-link>
-
                         <x-jet-dropdown-link href="{{ route('profile.show') }}">
                             個人アカウント編集
                         </x-jet-dropdown-link>

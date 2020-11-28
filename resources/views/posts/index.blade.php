@@ -42,11 +42,12 @@
         <a id="js-modal-close" class="Profile-modal__content-back Btn-gradient--red" href="">閉じる</a>
         <a href="/introductions/create" class="Profile-modal__content-register Btn-gradient">プロフィール登録へ</a>
       </div>
-    </div><!--modal__inner-->
-  </div><!--modal-->
+    </div>
+  </div>
 
   <div class="Flex">
   @foreach($posts as $post)
+  
     <div class="Post-box">
       <div class="Post-box__image">
           @if($post->image_path)
@@ -62,7 +63,11 @@
       <div class="Profile-box">
         <div class="Profile-box__content">
           <a href="/introductions/{{ $post->user->id }}">
-            <img class="h-8 w-8 rounded-full object-cover" src="{{ $post -> user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+            @if($post->introduction->profile_image_path)
+            <img class="Profile-box__content-profile-image" src="{{ $post -> introduction -> profile_image_path }}" alt="{{ Auth::user()->name }}" />
+            @else
+            <p class="Profile-box__content-profile-image-none">画像がありません</p>
+            @endif
             <p>{{ $post -> user -> name}}</p>
           </a>
         </div>
@@ -90,6 +95,7 @@
 
       </div>
     </div>
+   
   @endforeach
 
   </div>

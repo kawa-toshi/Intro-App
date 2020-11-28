@@ -26,7 +26,7 @@ class RenameProfilesToIntroductionsTable extends Migration
     public function down()
     {
         Schema::table('introductions', function (Blueprint $table) {
-          Schema::rename('introductions', 'profiles');
+          Schema::drop('introductions');
         });
     }
 }

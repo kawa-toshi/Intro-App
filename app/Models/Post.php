@@ -30,7 +30,7 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function introductions()
+    public function introduction()
     {
         return $this->belongsTo(Introduction::class);
     }

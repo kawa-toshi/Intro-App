@@ -29,7 +29,7 @@ $(function() {
                 <div class="Comment">
                     <div class="Profile-box">
                       <div class="Profile-box__content">
-                        <img class="Profile-img" src="http://localhost:8888/storage/${data.profile_image}" alt="" />
+                        <img class="Profile-img" src="${data.profile_image}" alt="" />
                         <div>
                           <p>${data.user_name}</p>
                           <p>${data.created_at}</p>

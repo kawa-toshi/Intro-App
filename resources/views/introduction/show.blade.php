@@ -33,7 +33,7 @@
     </nav>
   </x-slot>
 
-  @if($my_introduction)
+  @if($profile_cover_photo_url)
   <div class="Cover-image-area">
     <img src="{{ $profile_cover_photo_url }}" class="Cover-image-area__content">
   </div>
@@ -45,7 +45,7 @@
   @endif
 
   <div class="Profile-area">
-  @if($my_introduction)
+  @if($profile_photo_url)
     <img class="Profile-area__left" src="{{ $profile_photo_url }}" alt="{{ Auth::user()->name }}" />
   @else
     <p class="Profile-area__left-none">画像がありません</p>
@@ -92,7 +92,7 @@
       <p class="Post-box__content">{{ $post -> content}}</p>
       <div class="Profile-box">
         <div class="Profile-box__content">
-          <img class="h-8 w-8 rounded-full object-cover" src="{{ $post -> user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+          <img class="h-8 w-8 rounded-full object-cover" src="{{ $post -> introduction -> profile_image_path }}" alt="{{ Auth::user()->name }}" />
           <p>{{ $post -> user -> name}}</p>
         </div>
         <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>

@@ -75,6 +75,21 @@
   display: block;
 }
 
+.Profile-box__content-profile-image {
+  display: block;
+  height: 40px;
+  width: 40px;
+  border-radius: 80px;
+}
+
+.Profile-box__content-profile-image-none {
+  height: 40px;
+  width: 40px;
+  border-radius: 80px;
+  background-color: whitesmoke;
+  font-size: 4px;
+}
+
 .Profile-box__day {
   flex-grow: 3;
   text-align: center;

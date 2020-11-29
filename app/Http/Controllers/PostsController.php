@@ -24,7 +24,7 @@ class PostsController extends Controller
 
         $user_id = $user->id;
 
-        $posts = Post::all();
+        $posts = Post::paginate(4);
         $introductions = Introduction::all();
         
         $introduction = new Introduction();

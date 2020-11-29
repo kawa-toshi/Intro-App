@@ -98,6 +98,11 @@
    
   @endforeach
 
+  <div class="Pagination">
+  {{ $posts->links() }}
+  </div>
+
+
   </div>
 </x-app-layout>
 @endsection

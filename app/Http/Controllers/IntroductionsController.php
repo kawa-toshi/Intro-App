@@ -8,6 +8,8 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Favorite;
 use App\Models\Introduction;
+use App\Models\User;
+use App\Models\Follower;
 
 
 class IntroductionsController extends Controller
@@ -124,23 +126,56 @@ class IntroductionsController extends Controller
     {
       // $idはuser_id
       $user = auth()->user();
+      $user_id = $user->id;
       // プロフィール情報があれば格納 なければ null
       $introduction_user = $user->introductions->first();  // プロフィールが登録されているか
 
       $post = new Post();
       $introduction = new Introduction();
       $my_introduction = $introduction->where('user_id', $id)->get()->first();  // プロフィールを取得 現在ログイン中のユーザーのプロフィール
+      // 投稿ユーザーから飛ぶとそのプロフィールになる
+
+
+      // $idがログイン中のユーザーのidと等しいかどうかで、ユーザー自身のマイページか否か$follow_showで判定
+      $follow_show = $id == $user_id;
+      // following_idが記事のidと一致し、followed_idがログイン中のユーザーと一致するかどうかでそのページのユーザーにフォローされているか否か判定
+      $follows = new Follower();
+      $is_followed = $follows->where('followed_id', $user_id)->where('following_id', $id)->first();
+      $is_following = $follows->where('following_id', $user_id)->where('followed_id', $id)->first(); // following_idがログイン中のユーザー
+      
+      // 自分自身のフォロー数
+      $following =  $follows->where('following_id', $user_id)->get();
+      $my_following_count = $following -> count();
+
+      // 自分自身のフォロワー数
+      $followed = $follows->where('followed_id', $user_id)->get();
+      $my_followed_count = $followed -> count();
+      
+      // 自分以外のフォロー数
+      $your_following =  $follows->where('following_id', $id)->get();
+      $your_following_count = $your_following -> count();
+      
+      // 自分以外のフォロワー数
+      $your_followed = $follows->where('followed_id', $id)->get();
+      $your_followed_count = $your_followed -> count();
       
       
-      // プロフィール情報があってかつ現在ログイン中のユーザーのプロフィールがあるかどうかで場合わけ
-      
+      // ログイン中のユーザーのプロフィールがあるかどうかで場合わけ 全部上の場合になっている 修正か削除必要か？
       if($my_introduction){
       $my_profile_photo_url = $my_introduction->profile_image_path;  // プロフィール登録した画像取得
       $my_profile_cover_photo_url = $my_introduction->profile_cover_image_path;  // カバー画像取得
       $profile_message = $my_introduction->profile_message;
-      $posts = $post->where('user_id', $id)->get();  // ログインユーザーの投稿した記事の取得
+      $posts = $post->where('user_id', $id)->get();  // 記事を投稿したユーザーの記事取得 記事のところはpost_idが送られる
       return view('introduction.show', [
           'introduction_user'     => $introduction_user,
+          'is_following' => $is_following,
+          'is_followed' => $is_followed,
+          'follower_id' => $id,
+          'follow_show' => $follow_show,
+          'my_following_count' => $my_following_count,
+          'my_followed_count' => $my_followed_count,
+          'your_following_count' => $your_following_count,
+          'your_followed_count' => $your_followed_count,
           'my_introduction'   => $my_introduction,
           'user'     => $user,
           'posts' => $posts,
@@ -153,6 +188,11 @@ class IntroductionsController extends Controller
 
         return view('introduction.show', [
           'introduction_user'     => $introduction_user,
+          'is_following' => $is_following,
+          'follower_id' => $id,
+          'follow_show' => $follow_show,
+          'my_following_count' => $my_following_count,
+          'my_followed_count' => $my_followed_count,
           'my_introduction'   => $my_introduction,
           'user'     => $user,
           'posts' => $posts
@@ -273,5 +313,50 @@ class IntroductionsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    // フォロー関連
+    public function follow(Request $request)
+    {
+        $follower = auth()->user();  // 今ログインしているユーザー
+        $user_id = $follower->id;
+        $follows = new Follower();
+        $follower_id = $request->follower_id; // フォローをしたい人のid
+
+        // フォローしているか
+        // $is_following = $follows->where('following_id', $user_id)->first();
+        $is_following = $follows->where('following_id', $user_id)->where('followed_id', $follower_id)->first();
+
+        if(!$is_following) {
+          // フォローしていなければフォローする
+          $follows->followed_id =  $follower_id;// urlでs3の保存先urlを取得
+          $follows->following_id =  $user_id;
+          $follows->save();
+          return back();
+        }
+    }
+
+    // フォロー解除
+    public function unfollow(Request $request)
+    {
+      $follower = auth()->user();  // 今ログインしているユーザー
+      $user_id = $follower->id;
+      $follows = new Follower();
+      $follower_id = $request->follower_id; // フォローをしたい人のid
+
+      // フォローしているか
+      $is_following = Follower::where('following_id', $user_id);
+      $is_following->delete();
+
+
+        // try{
+          
+        //     $is_following->delete();
+        // } catch(\Throwable $e){
+        //     abort(500);
+        // }
+
+        return back();
     }
 }

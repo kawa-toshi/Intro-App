@@ -1,0 +1,71 @@
+.Btn-gradient {
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 20px;
+  margin: 20px 0;
+  border-radius: 0;
+  background-image: linear-gradient(to right, #707efa 0%, #40e1fe 100%);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.Btn-gradient:hover {
+  transform: translate(0, -2px);
+  color: #fff;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.Btn-gradient--red {
+  background-image: linear-gradient(to right, #f38d8dfa 0%, #fe4040 100%);
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 20px;
+  margin: 20px 0;
+  border-radius: 0;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.Btn-gradient--red:hover {
+  transform: translate(0, -2px);
+  color: #fff;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    transform: scale(1.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: scale(1.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.loved .fa-heart {
+  color: red;
+}
+
+.fa-heart {
+  color: rgba(226, 223, 223, 0.432);
+}
+
+.Big {
+  -webkit-animation: rotation 0.5s ease 0s 1 alternate none running;
+          animation: rotation 0.5s ease 0s 1 alternate none running;
+}
+

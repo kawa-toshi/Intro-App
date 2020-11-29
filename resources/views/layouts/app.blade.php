@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}">
         <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
         <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/varia.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/mixin.css') }}">
 
         @livewireStyles
 

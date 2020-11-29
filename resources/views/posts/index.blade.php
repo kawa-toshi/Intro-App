@@ -68,7 +68,7 @@
             @else
             <p class="Profile-box__content-profile-image-none">画像がありません</p>
             @endif
-            <p>{{ $post -> user -> name}}</p>
+            <p class="Profile-box__content-username">{{ $post -> user -> name}}</p>
           </a>
         </div>
         <p class="Profile-box__day">{{ $post->created_at->format('Y-m-d H:i') }}</p>

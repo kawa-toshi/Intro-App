@@ -21,14 +21,17 @@
       <a href="/introductions/{{ $user->id }}">
           マイページ
       </a>
+      <!-- ここを修正 -->
       @unless($introduction_user)
       <a href="/introductions/create">
           プロフィール登録
       </a>
       @else
-      <a href="/introductions/edit/{{ $user->id }}">
-          プロフィール編集
-      </a>
+        @if($follow_show)
+          <a href="/introductions/edit/{{ $user->id }}">
+            プロフィール編集
+          </a>
+        @endif
       @endunless
     </nav>
   </x-slot>
@@ -51,9 +54,36 @@
     <p class="Profile-area__left-none">画像がありません</p>
   @endif
     <div class="Profile-area__right">
+    <!-- フォローされていますのメッセージ まず自分のマイページかどうか判定-->
+    @if(!$follow_show)
+      @if($is_followed)
+      <p class="Profile-area__right-followed">このユーザーにフォローされています</p>
+      @endif
+    @endif
       <div class="User">
+        
         <p class="User__name">{{ $user -> name}}</p>
-        <button class="User__follow-btn"><i class="fas fa-user-plus"></i>フォロー</button>
+        <!-- ここからフォロー関連 -->
+        <!-- 自分のページだけは表示させないようにしたい -->
+        @if(!$follow_show)
+        @if($is_following)
+          <form action="{{ route('unfollow')}}" method="POST">
+              @csrf
+              {{ method_field('DELETE') }}
+              <input type="hidden" name="follower_id" value="{{ $follower_id }}">
+              
+              <button type="submit" class="User__follow-btn-none"><i class="fas fa-user-plus"></i>フォロー解除</button>
+          </form>
+        @else
+          <form action="{{ route('follow')}}" method="POST">
+              @csrf
+              <input type="hidden" name="follower_id" value="{{ $follower_id }}">
+
+              <button type="submit" class="User__follow-btn"><i class="fas fa-user-plus"></i>フォロー</button>
+          </form>
+        @endif
+        @endif
+        <!-- <button class="User__follow-btn"><i class="fas fa-user-plus"></i>フォロー</button> -->
       </div>
       <div class="User-detail">
         @if($my_introduction)
@@ -67,8 +97,14 @@
         @endif
       </div>
       <div class="User-follow">
-        <p class="User-follow__follow">87フォロー</p>
-        <p class="User-follow__follower">100フォロワー</p>
+      <!-- 自分自身のマイページかどうかでフォロー数フォロワー数場合わけ -->
+      @if($follow_show)
+        <p class="User-follow__follow"><span>{{ $my_following_count }}</span>フォロー</p>
+        <p class="User-follow__follower"><span>{{ $my_followed_count }}</span>フォロワー</p>
+      @else
+        <p class="User-follow__follow"><span>{{ $your_following_count }}</span>フォロー</p>
+        <p class="User-follow__follower"><span>{{ $your_followed_count }}</span>フォロワー</p>
+      @endif
       </div>
     </div>
   </div>

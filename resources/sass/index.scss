@@ -1,3 +1,6 @@
+@import "./varia";
+@import "./mixin";
+
 .Flex {
     display: flex;
     flex-wrap: wrap;
@@ -62,6 +65,9 @@
         a {
             display: block;
         }
+    }
+    &__content-username {
+        text-align: center;
     }
     &__content-profile-image {
         display: block;

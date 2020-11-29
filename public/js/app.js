@@ -23689,6 +23689,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/mixin.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/mixin.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/show.scss":
 /*!**********************************!*\
   !*** ./resources/sass/show.scss ***!
@@ -23711,14 +23722,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/varia.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/varia.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/top-page.scss ./resources/sass/footer.scss ./resources/sass/create.scss ./resources/sass/index.scss ./resources/sass/show.scss ./resources/sass/introduction_show.scss ./resources/sass/introduction_create.scss ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/mixin.scss ./resources/sass/varia.scss ./resources/sass/top-page.scss ./resources/sass/footer.scss ./resources/sass/create.scss ./resources/sass/index.scss ./resources/sass/show.scss ./resources/sass/introduction_show.scss ./resources/sass/introduction_create.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Applications/MAMP/htdocs/intro-app/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/intro-app/resources/sass/mixin.scss */"./resources/sass/mixin.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/intro-app/resources/sass/varia.scss */"./resources/sass/varia.scss");
 __webpack_require__(/*! /Applications/MAMP/htdocs/intro-app/resources/sass/top-page.scss */"./resources/sass/top-page.scss");
 __webpack_require__(/*! /Applications/MAMP/htdocs/intro-app/resources/sass/footer.scss */"./resources/sass/footer.scss");
 __webpack_require__(/*! /Applications/MAMP/htdocs/intro-app/resources/sass/create.scss */"./resources/sass/create.scss");

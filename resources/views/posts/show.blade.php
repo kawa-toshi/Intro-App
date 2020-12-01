@@ -41,7 +41,12 @@
 
       <div class="Profile-box">
         <div class="Profile-box__content">
+          <!-- ここ修正 -->
+          @if($post ->introduction->profile_image_path)
           <img class="Profile-img" src="{{ $post -> introduction -> profile_image_path }}"  alt="{{ Auth::user()->name }}" />
+          @else
+          <p class="Profile-img-none">画像がありません</p>
+          @endif
           <p>{{ $post -> user -> name}}</p>
         </div>
         <div>
@@ -82,7 +87,16 @@
     <div class="Comment">
       <div class="Profile-box">
         <div class="Profile-box__content">
-          <img class="Profile-img" src="{{ $post -> introduction -> profile_image_path }}"  alt="{{ Auth::user()->name }}" />
+          <!-- プロフィール登録されていてかつ画像がない場合も記述必要 -->
+          @if($my_introduction)
+            @if($my_introduction->profile_image_path)
+            <img src="{{ $user -> introduction -> profile_image_path }}"  class="Profile-img" width="50" height="50">
+            @else
+            <p class="Profile-img-none">画像がありません</p>
+            @endif
+          @else
+          <p class="Profile-img-none">画像がありません</p>
+          @endif
           <div>
             <p>{{ $comment -> user -> name}}</p>
             <p>{{ $comment->created_at->format('Y-m-d H:i') }}</p>
@@ -121,7 +135,15 @@
     <form method="POST" action="{{ route('ajaxComment') }}">
       @csrf
       <div class="Comment-post__content">
-        <img src="{{ $post -> introduction -> profile_image_path }}"  class="Profile-img" width="50" height="50">
+        @if($my_introduction)
+          @if($my_introduction->profile_image_path)
+          <img src="{{ $my_introduction -> profile_image_path }}"  class="Profile-img" width="50" height="50">
+          @else
+          <p class="Profile-img-none">画像がありません</p>
+          @endif
+        @else
+        <p class="Profile-img-none">画像がありません</p>
+        @endif
         <p class="">{{ $user->name }}</p>
       </div>
       <input type="hidden" name="post_id" value="{{ $post->id }}">

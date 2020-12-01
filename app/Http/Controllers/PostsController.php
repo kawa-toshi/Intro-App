@@ -127,15 +127,31 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        
         $user = auth()->user();
+        $user_id = $user->id;
         $post = Post::find($id);
-        // $comments = $comment->getComments($post->id);
+        $introduction = new Introduction;
+        $my_introduction = $introduction->where('user_id', $user_id)->get()->first();
+        if($my_introduction){
+          $profile_photo_url = $my_introduction->profile_image_path;
+          // $comments = $comment->getComments($post->id);
 
-        return view('posts.show', [
+          return view('posts.show', [
+              'user'     => $user,
+              'post' => $post,
+              'my_introduction' => $my_introduction,
+              'profile_photo_url' => $profile_photo_url
+              // 'comments' => $comments
+          ]);
+
+        }else{
+          return view('posts.show', [
             'user'     => $user,
             'post' => $post,
-            // 'comments' => $comments
+            'my_introduction' => $my_introduction,
         ]);
+        }
 
     }
 
@@ -257,12 +273,15 @@ class PostsController extends Controller
     // ajax コメント
     public function ajaxComment(Request $request, Comment $comment)
     {
+      
       $post_id = $request->post_id;   // コメントする投稿のID
       $user = auth()->user();
       $user_id = $user->id;  // コメントしたユーザーのID
       $text = $request->text;  // コメントの内容
       $introduction = new Introduction();
       $my_introduction = $introduction->where('user_id', $user_id)->get()->first();
+      // プロフィールがあるかどうか 修正必要
+      if($my_introduction){
       $profile_image = $my_introduction->profile_image_path;
       $user_name = $user->name;
 
@@ -276,6 +295,19 @@ class PostsController extends Controller
 
       $json = ["user_id" => $user_id, "post_id" => $post_id, "text" => $text, "created_at" => $created_at, "profile_image" => $profile_image, "user_name" => $user_name, "comment_id" => $comment_id];
       return response()->json($json);
+      }else{
+      $user_name = $user->name;
+      $comment->user_id = $user_id;
+      $comment->post_id = $post_id;
+      $comment->text = $text;
+      $comment->save();
+      $created_at = $comment->created_at->format('Y-m-d H:i');
+      $comment_id = $comment->id;
+
+
+      $json = ["user_id" => $user_id, "post_id" => $post_id, "text" => $text, "created_at" => $created_at, "user_name" => $user_name, "comment_id" => $comment_id];
+      return response()->json($json);
+      }
 
     }
 

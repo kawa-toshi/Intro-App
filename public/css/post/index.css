@@ -73,8 +73,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 980px;
+  width: 1180px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 1179px) {
+  .Flex {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Flex {
+    width: 100%;
+  }
 }
 
 .Flex__top-menu {
@@ -99,6 +111,19 @@
   margin: 40px;
 }
 
+@media screen and (max-width: 1179px) {
+  .Post-box {
+    width: 60%;
+    margin: 40px auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Post-box {
+    width: 80%;
+  }
+}
+
 .Post-box__title {
   font-size: 24px;
   margin: 10px 0;
@@ -115,18 +140,29 @@
 
 .Post-box__image-content {
   width: 100%;
-  height: 200px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  max-height: 200px;
+}
+
+@media screen and (max-width: 1179px) {
+  .Post-box__image-content {
+    max-height: 400px;
+  }
 }
 
 .Post-box__image-content-none {
   width: 100%;
-  height: 200px;
+  max-height: 200px;
   text-align: center;
   line-height: 200px;
   background-color: whitesmoke;
   border: black solid 1px;
+}
+
+@media screen and (max-width: 1179px) {
+  .Post-box__image-content-none {
+    max-height: 400px;
+    line-height: 400px;
+  }
 }
 
 .Profile-box {
@@ -137,13 +173,14 @@
 }
 
 .Profile-box__content {
-  display: flex;
-  margin-top: 20px;
-  margin: 20px;
+  margin: 15px 20px;
 }
 
 .Profile-box__content a {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 
 .Profile-box__content-username {
@@ -168,19 +205,41 @@
 .Profile-box__day {
   flex-grow: 3;
   text-align: center;
-  line-height: 80px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
 }
 
 .Profile-box__comment {
   display: flex;
-  line-height: 80px;
+  flex-direction: column;
   flex-grow: 2;
+  text-align: center;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Comment-box {
+  display: flex;
+  justify-content: space-around;
 }
 
 .LikeBox {
   display: flex;
-  line-height: 80px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   flex-grow: 2;
+}
+
+.LikeBox__title {
+  text-align: center;
+}
+
+.LikeBox__content {
+  display: flex;
+  justify-content: space-around;
 }
 
 @keyframes rotation {

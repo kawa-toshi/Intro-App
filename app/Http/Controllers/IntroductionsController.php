@@ -165,7 +165,8 @@ class IntroductionsController extends Controller
       $my_profile_photo_url = $my_introduction->profile_image_path;  // プロフィール登録した画像取得
       $my_profile_cover_photo_url = $my_introduction->profile_cover_image_path;  // カバー画像取得
       $profile_message = $my_introduction->profile_message;
-      $posts = $post->where('user_id', $id)->get();  // 記事を投稿したユーザーの記事取得 記事のところはpost_idが送られる
+      $your_user = User::find($id); // 自分以外のユーザーの名前取得に利用
+      $posts = $post->where('user_id', $id)->get();  // 記事を投稿したユーザーの記事取得 記事のところはポストを投稿したユーザーidが送られる
       return view('introduction.show', [
           'introduction_user'     => $introduction_user,
           'is_following' => $is_following,
@@ -178,6 +179,7 @@ class IntroductionsController extends Controller
           'your_followed_count' => $your_followed_count,
           'my_introduction'   => $my_introduction,
           'user'     => $user,
+          'your_user' => $your_user,
           'posts' => $posts,
           'profile_photo_url' => $my_profile_photo_url,
           'profile_cover_photo_url' => $my_profile_cover_photo_url,

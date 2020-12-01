@@ -1,5 +1,5 @@
 .Flex {
-  width: 70%;
+  width: 1180px;
   margin: 30px auto;
 }
 
@@ -22,10 +22,8 @@ body {
 }
 
 .Post-box__image-content {
-  height: 500px;
+  height: auto;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .Post-box__image-content-none {
@@ -84,6 +82,7 @@ body {
   margin: 10px auto;
   background-color: #fff;
   width: 60%;
+  padding: 40px;
 }
 
 .Comment__text {
@@ -96,6 +95,7 @@ body {
   width: 60%;
   margin: 20px auto;
   background-color: #fff;
+  padding: 40px;
 }
 
 .Comment-post__content {
@@ -127,9 +127,19 @@ body {
 }
 
 .Profile-img {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   border-radius: 40px;
+}
+
+.Profile-img-none {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: whitesmoke;
+  font-size: 4px;
+  text-align: center;
+  line-height: 80px;
 }
 
 .Comment-submit {

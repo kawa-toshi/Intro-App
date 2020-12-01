@@ -21,7 +21,7 @@
       <a href="/introductions/{{ $user->id }}">
           マイページ
       </a>
-      <!-- ここを修正 -->
+      
       @unless($introduction_user)
       <a href="/introductions/create">
           プロフィール登録
@@ -35,12 +35,17 @@
       @endunless
     </nav>
   </x-slot>
-
-  @if($profile_cover_photo_url)
-  <div class="Cover-image-area">
-    <img src="{{ $profile_cover_photo_url }}" class="Cover-image-area__content">
-  </div>
-  <!-- プロフィール登録なしの場合 -->
+  @if($my_introduction)
+    @if($profile_cover_photo_url)
+    <div class="Cover-image-area">
+      <img src="{{ $profile_cover_photo_url }}" class="Cover-image-area__content">
+    </div>
+    <!-- プロフィール登録なしの場合 -->
+    @else
+    <div class="Cover-image-area">
+      <p>カバー画像が登録されていません</p>
+    </div>
+    @endif
   @else
   <div class="Cover-image-area">
     <p>カバー画像が登録されていません</p>
@@ -48,8 +53,12 @@
   @endif
 
   <div class="Profile-area">
-  @if($profile_photo_url)
-    <img class="Profile-area__left" src="{{ $profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+  @if($my_introduction)
+    @if($profile_photo_url)
+      <img class="Profile-area__left" src="{{ $profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+    @else
+      <p class="Profile-area__left-none">画像がありません</p>
+    @endif
   @else
     <p class="Profile-area__left-none">画像がありません</p>
   @endif
@@ -61,8 +70,12 @@
       @endif
     @endif
       <div class="User">
-        
+        <!-- ここを修正 -->
+        @if($follow_show)
         <p class="User__name">{{ $user -> name}}</p>
+        @else
+        <p class="User__name">{{ $your_user -> name}}</p>
+        @endif
         <!-- ここからフォロー関連 -->
         <!-- 自分のページだけは表示させないようにしたい -->
         @if(!$follow_show)
@@ -71,7 +84,6 @@
               @csrf
               {{ method_field('DELETE') }}
               <input type="hidden" name="follower_id" value="{{ $follower_id }}">
-              
               <button type="submit" class="User__follow-btn-none"><i class="fas fa-user-plus"></i>フォロー解除</button>
           </form>
         @else

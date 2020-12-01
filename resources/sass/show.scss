@@ -1,5 +1,5 @@
 .Flex {
-    width: 70%;
+    width: 1180px;
     margin: 30px auto;
 }
 
@@ -20,9 +20,8 @@ body {
     background-color: #fff;
     margin-top: 10px;
     &__image-content {
-        height: 500px;
+        height: auto;
         width: 100%;
-        object-fit: cover;
     }
     &__image-content-none {
         height: 500px;
@@ -77,6 +76,7 @@ body {
     margin: 10px auto;
     background-color: #fff;
     width: 60%;
+    padding: 40px;
     &__text {
         margin: 20px 0 0 20px;
         min-height: 50px;
@@ -88,6 +88,7 @@ body {
     width: 60%;
     margin: 20px auto;
     background-color: #fff;
+    padding: 40px;
     &__content {
         display: flex;
     }
@@ -106,9 +107,19 @@ body {
 }
 
 .Profile-img {
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     border-radius: 40px;
+}
+
+.Profile-img-none {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background-color: whitesmoke;
+    font-size: 4px;
+    text-align: center;
+    line-height: 80px;
 }
 
 .Comment-submit {

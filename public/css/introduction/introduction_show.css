@@ -104,19 +104,20 @@
 }
 
 .Profile-area__left {
-  width: 100px;
-  height: 100px;
-  margin: 0 10px;
-  border-radius: 50px;
+  width: 200px;
+  height: 200px;
+  margin: 0 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 100px;
 }
 
 .Profile-area__left-none {
-  width: 100px;
-  height: 100px;
-  margin: 0 10px;
-  border-radius: 50px;
-  font-size: 4px;
-  line-height: 100px;
+  width: 200px;
+  height: 200px;
+  margin: 0 40px;
+  border-radius: 100px;
+  line-height: 200px;
   text-align: center;
   background-color: whitesmoke;
 }

@@ -71,25 +71,40 @@
             <p class="Profile-box__content-username">{{ $post -> user -> name}}</p>
           </a>
         </div>
-        <p class="Profile-box__day">{{ $post->created_at->format('Y-m-d H:i') }}</p>
+
+        <div class="Profile-box__day">
+          <p>投稿日時</p>
+          <p class="">{{ $post->created_at->format('Y-m-d H:i') }}</p>
+        </div>
+        
         <div class="Profile-box__comment">
           <!-- コメントアイコンとコメント数 -->
-            <a href="/posts/{{ $post->id }}" class="">
-              <i class="far fa-comment fa-fw"></i>
-            </a>
-            <a href="/posts/{{ $post->id }}" class="">
-              <p class="mb-0 tex">{{ count($post->comments) }}</p>
-           </a>
+          <p>コメント</p>
+          <div class="Comment-box">
+          <a href="/posts/{{ $post->id }}" class="">
+            <i class="far fa-comment fa-fw"></i>
+          </a>
+          <a href="/posts/{{ $post->id }}" class="">
+            <p class="mb-0 tex">{{ count($post->comments) }}</p>
+          </a>
+          </div>
+          
         </div>
 
         <!-- いいねのajax処理 -->
         <div class="LikeBox">
         @if (in_array($user->id, array_column($post->favorites->toArray(), 'user_id'), TRUE))
-          <a class="js-like-toggle loved" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
-          <span class="likesCount">{{ count($post->favorites) }}</span>
+          <p class="LikeBox__title">お気に入り</p>
+          <div class="LikeBox__content">
+            <a class="js-like-toggle loved" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
+            <span class="likesCount">{{ count($post->favorites) }}</span>
+          </div>
         @else
-          <a class="js-like-toggle" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
-          <span class="likesCount">{{ count($post->favorites) }}</span>
+          <p class="LikeBox__title">お気に入り</p>
+          <div class="LikeBox__content">
+            <a class="js-like-toggle" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
+            <span class="likesCount">{{ count($post->favorites) }}</span>
+          </div>
         @endif
         </div>
 
@@ -98,6 +113,7 @@
    
   @endforeach
 
+  <!-- ページネーション -->
   <div class="Pagination">
   {{ $posts->links() }}
   </div>

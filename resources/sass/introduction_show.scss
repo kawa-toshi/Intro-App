@@ -1,3 +1,6 @@
+@import "./varia";
+@import "./mixin";
+
 .Menu {
     display: flex;
     justify-content: space-between;
@@ -28,24 +31,28 @@
     display: flex;
     background: white;
     &__left {
-        width: 100px;
-        height: 100px;
-        margin: 0 10px;
-        border-radius: 50px;
+        width: 200px;
+        height: 200px;
+        margin: 0 40px;
+        object-fit: cover;
+        border-radius: 100px;
     }
     &__left-none {
-        width: 100px;
-        height: 100px;
-        margin: 0 10px;
-        border-radius: 50px;
-        font-size: 4px;
-        line-height: 100px;
+        width: 200px;
+        height: 200px;
+        margin: 0 40px;
+        border-radius: 100px;
+        line-height: 200px;
         text-align: center;
         background-color: whitesmoke;
     }
     &__right {
         margin-left: 20px;
         width: 80%;
+    }
+    &__right-followed {
+        font-size: $font-small;
+        color: $main-color;
     }
 }
 
@@ -63,6 +70,16 @@
         border: blue solid 1px;
         padding: 10px;
         font-weight: bold;
+        &:hover {
+            background-color: blue;
+            color: white;
+        }
+    }
+    &__follow-btn-none {
+        background-color: red;
+        padding: 10px;
+        font-weight: bold;
+        color: white;
     }
 }
 
@@ -70,15 +87,27 @@
     margin: 10px 0;
     &__content {
         font-size: 16px;
-        min-height: 60px;
+        min-height: 80px;
     }
 }
 
 .User-follow {
     display: flex;
+    padding: 10px 0;
     &__follow {
+        span {
+            font-size: 24px;
+            padding-right: 10px;
+            font-weight: bold;
+        }
     }
     &__follower {
+        margin-left: 10px;
+        span {
+            font-size: 24px;
+            padding-right: 10px;
+            font-weight: bold;
+        }
     }
 }
 

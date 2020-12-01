@@ -24,7 +24,8 @@ $(function() {
                 console.log(data.text);
                 console.log(data.user_id);
                 $(".Empty-message").hide();
-
+                // プロフィール画像があるかどうかで場合わけ
+                if(data.profile_image){
                 var html = `
                 <div class="Comment">
                     <div class="Profile-box">
@@ -51,6 +52,34 @@ $(function() {
                 `;
 
                 $("#Add-comment").append(html);
+                }else{
+                  var html = `
+                <div class="Comment">
+                    <div class="Profile-box">
+                      <div class="Profile-box__content">
+                        <p class="Profile-img-none">画像がありません</p>
+                        <div>
+                          <p>${data.user_name}</p>
+                          <p>${data.created_at}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="Comment__text">
+                      <p>${data.text} </p>
+                    </div>
+                    
+                    <div class="Btn-wrraper">
+                      <form method="DELETE" action="http://localhost:8888/ajaxCommentDelete">
+                          <button type="submit" id="commentDeleteBtn" data-comment_id=${data.comment_id}>
+                            削除
+                          </button>
+                      </form>
+                    </div>
+                  </div>
+                `;
+
+                $("#Add-comment").append(html);
+                }
             })
             // 失敗
             .fail(function(data, xhr, err) {

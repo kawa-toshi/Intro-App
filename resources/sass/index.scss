@@ -1,9 +1,19 @@
+@import "./varia";
+@import "./mixin";
+
 .Flex {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 980px;
+    width: $layout-width-inner;
     margin: 0 auto;
+    @include mq("tab") {
+        width: 100%;
+    }
+    @include mq("sp") {
+        width: 100%;
+    }
+
     &__top-menu {
         margin: 0 30px;
         font-size: 14px;
@@ -23,6 +33,13 @@
     width: 40%;
     background-color: #fff;
     margin: 40px;
+    @include mq("tab") {
+        width: 60%;
+        margin: 40px auto;
+    }
+    @include mq("sp") {
+        width: 80%;
+    }
     &__title {
         font-size: 24px;
         margin: 10px 0;
@@ -36,16 +53,22 @@
     }
     &__image-content {
         width: 100%;
-        height: 200px;
-        object-fit: cover;
+        max-height: 200px;
+        @include mq("tab") {
+            max-height: 400px;
+        }
     }
     &__image-content-none {
         width: 100%;
-        height: 200px;
+        max-height: 200px;
         text-align: center;
         line-height: 200px;
         background-color: whitesmoke;
         border: black solid 1px;
+        @include mq("tab") {
+            max-height: 400px;
+            line-height: 400px;
+        }
     }
 }
 
@@ -56,12 +79,16 @@
     border: 1px solid black;
 
     &__content {
-        display: flex;
-        margin-top: 20px;
-        margin: 20px;
+        margin: 15px 20px;
         a {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
         }
+    }
+    &__content-username {
+        text-align: center;
     }
     &__content-profile-image {
         display: block;
@@ -79,19 +106,38 @@
     &__day {
         flex-grow: 3;
         text-align: center;
-        line-height: 80px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
     }
     &__comment {
         display: flex;
-        line-height: 80px;
+        flex-direction: column;
         flex-grow: 2;
+        text-align: center;
+        justify-content: space-evenly;
+        align-items: center;
     }
+}
+.Comment-box {
+    display: flex;
+    justify-content: space-around;
 }
 
 .LikeBox {
     display: flex;
-    line-height: 80px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     flex-grow: 2;
+    &__title {
+        text-align: center;
+    }
+    &__content {
+        display: flex;
+        justify-content: space-around;
+    }
 }
 
 @keyframes rotation {
@@ -154,4 +200,9 @@
     }
     &__content-back {
     }
+}
+
+.Pagination {
+    margin: 0 auto;
+    width: 80%;
 }

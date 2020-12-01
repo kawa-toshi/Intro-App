@@ -78,4 +78,9 @@ Route::group(['middleware' => 'auth'], function() {
     // マイページ表示
     Route::get('/introductions/{id}', [IntroductionsController::class, 'show'])->name('introduction');
 
+    // フォローフォロワー
+    Route::post('/introductions/follow', [IntroductionsController::class, 'follow'])->name('follow');
+
+    Route::delete('/introductions/unfollow', [IntroductionsController::class, 'unfollow'])->name('unfollow');
+
   });

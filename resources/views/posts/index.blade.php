@@ -12,7 +12,7 @@
 
   <x-slot name="header">
     <div class="Flex">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight Flex__top-menu">
+      <h2 class="">
           投稿一覧
       </h2>
       <a href="{{ route('post') }}" class="Flex__top-menu">

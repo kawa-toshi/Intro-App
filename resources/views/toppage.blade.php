@@ -10,17 +10,17 @@
 <body>
   <div class="Wrapper">
     <div class="header">
-      <p class="header__title"><img src="/assets/images/logo3.png" width="100" height="80"></p>
+      <p class="header__title"><img src="/assets/images/logo3.png"></p>
       @if (Route::has('login'))
       <div class="header__nav">
         @auth
-        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">投稿一覧</a>
+          <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">投稿一覧</a>
         @else
-        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">ログイン</a>
+          <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">ログイン</a>
 
-        @if (Route::has('register'))
-        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">新規会員登録</a>
-        @endif
+          @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">新規会員登録</a>
+          @endif
         @endif
       </div>
       @endif
@@ -45,7 +45,20 @@
         @endif
       </div>
         @endif
-      <h1 class="Main__text-heading">Let's Share App!!</h1>
+      <h1 class="Main__text-sub-heading">Let's Share App!!</h1>
+
+      <!-- レスポンシブ ボタン -->
+      <div class="Btn-small-wrapper">
+      @auth
+        <a href="{{ url('/dashboard') }}" class="Btn-small-wrapper__btn">投稿一覧</a>
+        @else
+        <a href="{{ route('login') }}" class="Btn-small-wrapper__btn">ログイン</a>
+
+        @if (Route::has('register'))
+        <a href="{{ route('register') }}" class="Btn-small-wrapper__btn">新規会員登録</a>
+        @endif
+      @endif
+      </div>
     </div>
   </div>
 @endsection

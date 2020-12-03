@@ -1,8 +1,10 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
 
-// Variables
-@import "variables";
+// Variables スマホは最低320px;
+
+@import "./varia";
+@import "./mixin";
 
 // Bootstrap
 // @import "~bootstrap/scss/bootstrap";
@@ -20,47 +22,88 @@ a {
     justify-content: space-between;
     background-color: white;
     color: rgb(55, 107, 248);
-    width: 50%;
+    width: 1180px;
     margin: 0 auto;
     height: 10%;
     font-size: 20px;
+    @include mq("tab") {
+        width: 100%;
+    }
+    @include mq("sp") {
+        width: 100%;
+        height: 80px;
+    }
     &__title {
         line-height: 100px;
         margin: 0 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 100px;
+            height: 80px;
+            @include mq("sp") {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 60px;
+                height: 60px;
+            }
+        }
     }
     &__nav {
         line-height: 100px;
         margin: 0 5px;
+        @include mq("sp") {
+            font-size: 14px;
+        }
     }
 }
 
 .Main {
     background-color: rgb(55, 107, 248);
     color: white;
-    height: 78%;
+    height: 80%;
     &__text {
     }
     &__text-heading {
         text-align: center;
         font-size: 60px;
+        padding: 80px 0 40px;
+        margin: 0 auto;
+        @include mq("tab") {
+            font-size: 40px;
+        }
+        @include mq("sp") {
+            font-size: 14px;
+            padding: 20px 0 0;
+        }
+    }
+    &__text-sub-heading {
+        text-align: center;
+        font-size: 60px;
         padding: 80px;
         margin: 0 auto;
+        @include mq("tab") {
+            font-size: 40px;
+        }
+        @include mq("sp") {
+            font-size: 24px;
+            padding: 20px;
+        }
     }
     &__text-content {
         text-align: center;
         padding: 40px;
         font-size: 18px;
         line-height: 30px;
-    }
-}
-
-.Footer {
-    background-color: white;
-    height: 10%;
-    &__title {
-        text-align: center;
-        color: rgb(55, 107, 248);
-        line-height: 80px;
+        @include mq("tab") {
+            font-size: 18px;
+        }
+        @include mq("sp") {
+            font-size: 10px;
+            padding: 40px 0;
+        }
     }
 }
 
@@ -73,8 +116,48 @@ a {
     margin: 0 auto;
     padding: 40px;
     border-radius: 10px;
+    @include mq("sp") {
+        width: 200px;
+        font-size: 12px;
+        padding: 30px;
+    }
     &:hover {
         background-color: blue;
         color: white;
+    }
+}
+
+.Btn-small-wrapper {
+    display: none;
+    justify-content: space-between;
+    width: 600px;
+    margin: 0 auto;
+    @include mq("tab") {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+    @include mq("sp") {
+        width: 280px;
+        margin-top: 20px;
+    }
+
+    &__btn {
+        text-align: center;
+        font-size: 18px;
+        display: block;
+        background-color: white;
+        padding: 20px 30px;
+        border-radius: 10px;
+        width: 200px;
+        @include mq("sp") {
+            font-size: 10px;
+            padding: 20px 0;
+            width: 120px;
+        }
+        &:hover {
+            background-color: blue;
+            color: white;
+        }
     }
 }

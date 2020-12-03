@@ -1,4 +1,75 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);a {
+@import url(https://fonts.googleapis.com/css?family=Nunito);.Btn-gradient {
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 20px;
+  margin: 20px 0;
+  border-radius: 0;
+  background-image: linear-gradient(to right, #707efa 0%, #40e1fe 100%);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.Btn-gradient:hover {
+  transform: translate(0, -2px);
+  color: #fff;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.Btn-gradient--red {
+  background-image: linear-gradient(to right, #f38d8dfa 0%, #fe4040 100%);
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 20px;
+  margin: 20px 0;
+  border-radius: 0;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.Btn-gradient--red:hover {
+  transform: translate(0, -2px);
+  color: #fff;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    transform: scale(1.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: scale(1.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.loved .fa-heart {
+  color: red;
+}
+
+.fa-heart {
+  color: rgba(226, 223, 223, 0.432);
+}
+
+.Big {
+  -webkit-animation: rotation 0.5s ease 0s 1 alternate none running;
+          animation: rotation 0.5s ease 0s 1 alternate none running;
+}
+
+a {
   text-decoration: none;
   color: #376bf8;
 }
@@ -12,15 +83,46 @@
   justify-content: space-between;
   background-color: white;
   color: #376bf8;
-  width: 50%;
+  width: 1180px;
   margin: 0 auto;
   height: 10%;
   font-size: 20px;
 }
 
+@media screen and (max-width: 1179px) {
+  .header {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    width: 100%;
+    height: 80px;
+  }
+}
+
 .header__title {
   line-height: 100px;
   margin: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__title img {
+  width: 100px;
+  height: 80px;
+}
+
+@media screen and (max-width: 767px) {
+  .header__title img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .header__nav {
@@ -28,17 +130,56 @@
   margin: 0 5px;
 }
 
+@media screen and (max-width: 767px) {
+  .header__nav {
+    font-size: 14px;
+  }
+}
+
 .Main {
   background-color: #376bf8;
   color: white;
-  height: 78%;
+  height: 80%;
 }
 
 .Main__text-heading {
   text-align: center;
   font-size: 60px;
+  padding: 80px 0 40px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1179px) {
+  .Main__text-heading {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Main__text-heading {
+    font-size: 14px;
+    padding: 20px 0 0;
+  }
+}
+
+.Main__text-sub-heading {
+  text-align: center;
+  font-size: 60px;
   padding: 80px;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 1179px) {
+  .Main__text-sub-heading {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Main__text-sub-heading {
+    font-size: 24px;
+    padding: 20px;
+  }
 }
 
 .Main__text-content {
@@ -48,15 +189,17 @@
   line-height: 30px;
 }
 
-.Footer {
-  background-color: white;
-  height: 10%;
+@media screen and (max-width: 1179px) {
+  .Main__text-content {
+    font-size: 18px;
+  }
 }
 
-.Footer__title {
-  text-align: center;
-  color: #376bf8;
-  line-height: 80px;
+@media screen and (max-width: 767px) {
+  .Main__text-content {
+    font-size: 10px;
+    padding: 40px 0;
+  }
 }
 
 .Btn {
@@ -70,7 +213,60 @@
   border-radius: 10px;
 }
 
+@media screen and (max-width: 767px) {
+  .Btn {
+    width: 200px;
+    font-size: 12px;
+    padding: 30px;
+  }
+}
+
 .Btn:hover {
+  background-color: blue;
+  color: white;
+}
+
+.Btn-small-wrapper {
+  display: none;
+  justify-content: space-between;
+  width: 600px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1179px) {
+  .Btn-small-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .Btn-small-wrapper {
+    width: 280px;
+    margin-top: 20px;
+  }
+}
+
+.Btn-small-wrapper__btn {
+  text-align: center;
+  font-size: 18px;
+  display: block;
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 200px;
+}
+
+@media screen and (max-width: 767px) {
+  .Btn-small-wrapper__btn {
+    font-size: 10px;
+    padding: 20px 0;
+    width: 120px;
+  }
+}
+
+.Btn-small-wrapper__btn:hover {
   background-color: blue;
   color: white;
 }

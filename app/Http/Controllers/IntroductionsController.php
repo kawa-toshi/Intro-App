@@ -160,7 +160,7 @@ class IntroductionsController extends Controller
       $your_followed_count = $your_followed -> count();
       
       
-      // ログイン中のユーザーのプロフィールがあるかどうかで場合わけ 全部上の場合になっている 修正か削除必要か？
+      // ログイン中のユーザーのプロフィールがあるかどうかで場合わけ 
       if($my_introduction){
       $my_profile_photo_url = $my_introduction->profile_image_path;  // プロフィール登録した画像取得
       $my_profile_cover_photo_url = $my_introduction->profile_cover_image_path;  // カバー画像取得

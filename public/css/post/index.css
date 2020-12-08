@@ -100,6 +100,10 @@
   }
 }
 
+.Flex__top-menu--bold {
+  font-weight: bold;
+}
+
 .Flex a {
   display: block;
 }

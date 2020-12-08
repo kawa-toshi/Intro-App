@@ -20,6 +20,9 @@
         @include mq("sp") {
             margin: 0;
         }
+        &--bold {
+            font-weight: bold;
+        }
     }
     a {
         display: block;
@@ -138,6 +141,7 @@
         align-items: center;
     }
 }
+
 .Comment-box {
     display: flex;
     justify-content: space-around;

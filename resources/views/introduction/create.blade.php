@@ -7,9 +7,20 @@
 
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      プロフィール登録画面
-    </h2>
+  <nav class="Menu">
+      <h1 class="Menu__item--bold">
+          プロフィール登録
+      </h1>
+      <a href="{{ route('post') }}" class="Menu__item">
+          投稿一覧
+      </a>
+      <a href="{{ route('create') }}" class="Menu__item">
+          新規投稿
+      </a>
+      <a href="/introductions/{{ $user->id }}" class="Menu__item">
+          マイページ
+      </a>
+    </nav>
   </x-slot>
 
 

@@ -1,7 +1,8 @@
-
+<!-- デプロイした場合secure_asset -->
 @extends('layouts/master')
 <link rel="stylesheet" href="{{ secure_asset('css/reset.css') }}">
 <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/footer.css') }}">
 <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 @push('css')
   <link href="{{ mix('css/top-page.css') }}" rel="stylesheet">

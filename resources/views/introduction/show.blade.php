@@ -9,26 +9,26 @@
 
   <x-slot name="header">
     <nav class="Menu">
-      <h1 class="font-semibold text-xl text-gray-800 leading-tight">
+      <h1 class="Menu__item--bold">
           マイページ
       </h1>
-      <a href="{{ route('post') }}">
+      <a href="{{ route('post') }}" class="Menu__item">
           投稿一覧
       </a>
-      <a href="{{ route('create') }}">
+      <a href="{{ route('create') }}" class="Menu__item">
           新規投稿
       </a>
-      <a href="/introductions/{{ $user->id }}">
+      <a href="/introductions/{{ $user->id }}" class="Menu__item">
           マイページ
       </a>
       
       @unless($introduction_user)
-      <a href="/introductions/create">
+      <a href="/introductions/create" class="Menu__item">
           プロフィール登録
       </a>
       @else
         @if($follow_show)
-          <a href="/introductions/edit/{{ $user->id }}">
+          <a href="/introductions/edit/{{ $user->id }}" class="Menu__item">
             プロフィール編集
           </a>
         @endif
@@ -140,26 +140,47 @@
       <p class="Post-box__content">{{ $post -> content}}</p>
       <div class="Profile-box">
         <div class="Profile-box__content">
-          <img class="h-8 w-8 rounded-full object-cover" src="{{ $post -> introduction -> profile_image_path }}" alt="{{ Auth::user()->name }}" />
-          <p>{{ $post -> user -> name}}</p>
+          @if($post->introduction->profile_image_path)
+          <img class="Profile-box__content-profile-image" src="{{ $post -> introduction -> profile_image_path }}" alt="{{ Auth::user()->name }}" />
+          @else
+          <p class="Profile-box__content-profile-image-none">画像が登録されていません</p>
+          @endif
+          <p class="Profile-box__content-username">{{ $post -> user -> name}}</p>
         </div>
+
+        <div class="Profile-box__day">
+        <p>投稿日時</p>
         <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
-        <div>
+        </div>
+
+        <div class="Profile-box__comment">
           <!-- コメントアイコンとコメント数 -->
-          <a href="/posts/{{ $post->id }}">
+          <p>コメント</p>
+          <div class="Comment-box">
+          <a href="/posts/{{ $post->id }}" class="">
             <i class="far fa-comment fa-fw"></i>
-            <p class="mb-0 text-secondary">{{ count($post->comments) }}</p>
           </a>
+          <a href="/posts/{{ $post->id }}" class="">
+            <p class="mb-0 tex">{{ count($post->comments) }}</p>
+          </a>
+          </div>
+          
         </div>
 
         <!-- いいねのajax処理 -->
         <div class="LikeBox">
         @if (in_array($user->id, array_column($post->favorites->toArray(), 'user_id'), TRUE))
-          <a class="js-like-toggle loved" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
-          <span class="likesCount">{{ count($post->favorites) }}</span>
+          <p class="LikeBox__title">お気に入り</p>
+          <div class="LikeBox__content">
+            <a class="js-like-toggle loved" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
+            <span class="likesCount">{{ count($post->favorites) }}</span>
+          </div>
         @else
-          <a class="js-like-toggle" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
-          <span class="likesCount">{{ count($post->favorites) }}</span>
+          <p class="LikeBox__title">お気に入り</p>
+          <div class="LikeBox__content">
+            <a class="js-like-toggle" href="{{ route('ajaxlike') }}" data-post_id="{{ $post->id }}"><i class="fas fa-heart"></i></a>
+            <span class="likesCount">{{ count($post->favorites) }}</span>
+          </div>
         @endif
         </div>
 

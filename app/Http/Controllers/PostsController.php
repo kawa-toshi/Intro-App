@@ -62,8 +62,20 @@ class PostsController extends Controller
     public function create()
     {
         $user = auth()->user();
+        $user_id = $user->id;
+        $introductions = Introduction::all();
+        $introduction = new Introduction();
+        
+        // ユーザーとプロフィールを結びつける？
+        // ポスト一つをとる
+        
+        $my_introduction = $introduction->where('user_id', $user_id)->get()->first();  // プロフィールを取得
+        $profile_image_path = $my_introduction->profile_image_path;
+        // postのイントロダクションをとる
         return view('posts.create', [
-            'user' => $user
+            'user' => $user,
+            'my_introduction' => $my_introduction,
+            'profile_image_path' => $profile_image_path
         ]);
     }
 
@@ -165,8 +177,17 @@ class PostsController extends Controller
     {
         $user = auth()->user();
         $post = Post::find($id);
+        $user_id = $user->id;
+        $introductions = Introduction::all();
+        $introduction = new Introduction();
+        
+        // ユーザーとプロフィールを結びつける？
+        // ポスト一つをとる
+        
+        $my_introduction = $introduction->where('user_id', $user_id)->get()->first();  // プロフィールを取得
+        $profile_image_path = $my_introduction->profile_image_path;
 
-        return view('posts.edit', ['post' => $post,'user' => $user]);
+        return view('posts.edit', ['post' => $post,'user' => $user, 'my_introduction' => $my_introduction,'profile_image_path' => $profile_image_path]);
     }
 
     /**

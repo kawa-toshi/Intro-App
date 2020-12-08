@@ -13,35 +13,49 @@
 
 
 <div class="Wrapper">
-  <div class="Wrapper__title">CREATE</div>
+  <div class="Wrapper__title">EDIT</div>
     <div class="Post-box">
       <form method="POST" action="{{ route('update')}}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id" value="{{ $post->id }}">
         <div class="Post-box__user">
-          <img class="Post-box__img" src="{{ $user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+        @if($profile_image_path)
+          <img class="Post-box__img" src="{{ $profile_image_path }}" alt="{{ Auth::user()->name }}" />
+          @else
+          <p class="Post-box__img-none">画像がありません</p>
+          @endif
           <p class="Post-box__user-name">{{ $user->name }}</p>
         </div>
 
-        <div id="PreviewArea"><img src="{{ $post->image_path }}" id="PreviewArea__previous"></div>
-        <label for="Post-image" class="Image-field">トップ画像を投稿できます
-          <input type="file" name="image_path"  id="Post-image">
-        </label>
+        <div id="PreviewArea">
+          @if($post -> image_path)
+          <img src="{{ $post->image_path }}" id="PreviewArea__previous">
+          @endif
+        </div>
+        <div class="Post-box__top">
+          <label for="Post-image" class="Image-field">トップ画像を投稿できます
+            <input type="file" name="image_path"  id="Post-image">
+          </label>
+        </div>
 
         <div class="Post-box__content">
-          <input type="text" class="Post-box__content-title" name="title" placeholder="アプリ名" required autocomplete="text" rows="4"></input>
-          @if ($errors->has('title'))
-          <div>
-            {{ $errors->first('title')}}
-          </div>
+        <div class="App-name">
+            <input type="text" class="Post-box__content-title" value="{{ $post->title}}" name="title" placeholder="アプリ名" required autocomplete="text" rows="4"></input>
+            @if ($errors->has('title'))
+            <div>
+              {{ $errors->first('title')}}
+            </div>
           @endif
-          <textarea class="Post-box__content-text" name="content" placeholder="内容" required autocomplete="text" rows="4"></textarea>
-          @if ($errors->has('title'))
-          <div>
-            {{ $errors->first('content')}}
           </div>
-          @endif
-          <p class="">140文字以内</p>
+          
+          <div class="App-overview">
+            <textarea class="Post-box__content-text" name="content" placeholder="アプリの概要">{{ $post->content}}</textarea>
+            @if ($errors->has('title'))
+            <div>
+              {{ $errors->first('content')}}
+            </div>
+            @endif
+          </div>
         </div>
 
           <div class="">

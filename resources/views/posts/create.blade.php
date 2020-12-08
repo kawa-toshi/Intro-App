@@ -6,10 +6,30 @@
 @section('content')
 
 <x-app-layout>
+  
+
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      新規投稿画面
-    </h2>
+    <div class="Flex">
+      <h2 class="Flex__top-menu--bold">
+          新規投稿
+      </h2>
+      <a href="{{ route('post') }}" class="Flex__top-menu">
+          投稿一覧
+      </a>
+      <!-- ここifに変える -->
+      @if($my_introduction)
+      <a href="{{ route('create') }}"  class="Flex__top-menu">
+          新規投稿
+      </a>
+      @else
+      <a href="#" id="introduction_pop" class="Flex__top-menu">
+          新規投稿(この機能を利用するにはプロフィール登録が必要です)
+      </a>
+      @endif
+      <a href="/introductions/{{ $user->id }}" class="Flex__top-menu">
+          マイページ
+      </a>
+      </div>
   </x-slot>
 
 
@@ -19,29 +39,41 @@
       <form method="POST" action="{{ route('store')}}" enctype="multipart/form-data">
         @csrf
         <div class="Post-box__user">
-          <img class="Post-box__img" src="{{ $user ->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+          @if($profile_image_path)
+          <img class="Post-box__img" src="{{ $profile_image_path }}" alt="{{ Auth::user()->name }}" />
+          @else
+          <p class="Post-box__img-none">画像がありません</p>
+          @endif
           <p class="Post-box__user-name">{{ $user->name }}</p>
         </div>
 
         <div id="PreviewArea"></div>
-        <label for="Post-image" class="Image-field">トップ画像を投稿できます
-          <input type="file" name="image_path"  id="Post-image">
-        </label>
+        <div class="Post-box__top">
+         
+          <label for="Post-image" class="Image-field">トップ画像を投稿できます
+            <input type="file" name="image_path"  id="Post-image">
+          </label>
+        </div>
 
         <div class="Post-box__content">
-          <input type="text" class="Post-box__content-title" name="title" placeholder="アプリ名" required autocomplete="text" rows="4"></input>
-          @if ($errors->has('title'))
-          <div>
-            {{ $errors->first('title')}}
-          </div>
+          <div class="App-name">
+            
+            <input type="text" class="Post-box__content-title" name="title" placeholder="アプリ名" required autocomplete="text" rows="4"></input>
+            @if ($errors->has('title'))
+            <div>
+              {{ $errors->first('title')}}
+            </div>
           @endif
-          <textarea class="Post-box__content-text" name="content" placeholder="内容" required autocomplete="text" rows="4"></textarea>
-          @if ($errors->has('title'))
-          <div>
-            {{ $errors->first('content')}}
           </div>
-          @endif
-          <p class="">140文字以内</p>
+          <div class="App-overview">
+            
+            <textarea class="Post-box__content-text" name="content" placeholder="内容" required autocomplete="text" rows="4"></textarea>
+            @if ($errors->has('title'))
+            <div>
+              {{ $errors->first('content')}}
+            </div>
+            @endif
+          </div>
         </div>
 
           <div class="">

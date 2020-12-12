@@ -74,6 +74,15 @@ class IntroductionsController extends Controller
         $profile_image = $request->file('profile_image_path');
         $cover_image = $request->file('profile_cover_image_path');
         $data = $request->all();
+
+        $rules =  [
+          'profile_image_path' => ['image'],
+          'profile_cover_image_path' => ['image'],
+          'profile_message' => ['required', 'max:350']
+      ];
+      $this->validate($request, $rules);
+  
+
         if($profile_image && $cover_image){
           $profile_image_path = Storage::disk('s3')->putFile('profile-image', $profile_image, 'public');
           $cover_image_path = Storage::disk('s3')->putFile('cover-image', $cover_image, 'public');
@@ -241,6 +250,13 @@ class IntroductionsController extends Controller
     {
       $user = auth()->user();
       $data = $request->all();
+
+      $rules =  [
+        'profile_image_path' => ['image'],
+        'profile_cover_image_path' => ['image'],
+        'profile_message' => ['required', 'max:350']
+    ];
+    $this->validate($request, $rules);
 
       $introduction = Introduction::find($data['id']);
       $profile_image = $request->file('profile_image_path');

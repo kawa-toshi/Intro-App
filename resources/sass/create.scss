@@ -85,7 +85,6 @@
 }
 
 .App-name {
-    display: flex;
     width: 80%;
     margin: 0 auto;
 }
@@ -123,17 +122,6 @@
     }
 }
 
-// 画像アップロード
-// .Image-field {
-//     height: 50px;
-//     display: block;
-//     background-color: wheat;
-//     width: 200px;
-//     margin: 10px auto;
-//     text-align: center;
-//     line-height: 50px;
-// }
-
 #Post-image {
     display: none;
 }
@@ -149,6 +137,22 @@
         width: 300px;
         height: 200px;
         display: block;
+    }
+}
+
+.Image-field {
+    display: block;
+    padding: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    color: #1b1b1b;
+    background: #fff;
+    border: 1px solid #1b1b1b;
+    &:hover {
+        background: #1b1b1b;
+        color: #fff;
+        cursor: pointer;
+        text-decoration: none;
     }
 }
 

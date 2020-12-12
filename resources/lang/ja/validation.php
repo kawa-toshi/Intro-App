@@ -129,9 +129,9 @@ return [
     |
     */
 
-    'custom' => [
+    'カスタム' => [
         '属性名' => [
-            'ルール名' => 'カスタムメッセージ',
+            
         ],
     ],
 
@@ -146,6 +146,12 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+      'title' => 'アプリ名',
+      'content' => 'アプリの概要',
+      'image_path' => 'トップ画像',
+      'profile_image_path' => 'プロフィール画像',
+      'profile_cover_image_path' => 'カバー画像',
+      'profile_message' => 'プロフィール詳細'],
 
 ];

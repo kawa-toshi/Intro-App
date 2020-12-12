@@ -54,14 +54,13 @@
 
       </div>
       <div class="User-detail">
-        <p class="User-detail__content">プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明
-        プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明
-        プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明
+        <p class="User-detail__content">
+          プロフィールの説明が入ります
         </p>
       </div>
       <div class="User-follow">
-        <p class="User-follow__follow"><span>87</span>フォロー</p>
-        <p class="User-follow__follower"><span>100</span>フォロワー</p>
+        <p class="User-follow__follow">フォロー数</p>
+        <p class="User-follow__follower">フォロワー数</p>
       </div>
     </div>
   </div>
@@ -74,22 +73,31 @@
         @csrf
 
         <div class="Post-box__profile-image">
-          
           <label for="Profile-image" class="Image-field">プロフィール画像を登録
             <input type="file" name="profile_image_path"  id="Profile-image">
           </label>
         </div>
 
+        @if ($errors->has('profile_image_path'))
+          <div class="Error_message">
+            {{ $errors->first('profile_image_path')}}
+          </div>
+        @endif
+
         <div class="Post-box__cover-image">
-          
           <label for="Cover-image" class="Image-field">カバー画像を登録
             <input type="file" name="profile_cover_image_path"  id="Cover-image">
           </label>
         </div>
 
+        @if ($errors->has('profile_cover_image_path'))
+          <div class="Error_message">
+            {{ $errors->first('profile_cover_image_path')}}
+          </div>
+        @endif
 
         <div class="Post-box__content">
-          <textarea class="Post-box__content-text" name="profile_message" placeholder="プロフィール詳細" required autocomplete="text" rows="4"></textarea>
+          <textarea class="Post-box__content-text" name="profile_message" placeholder="プロフィール詳細(350字以内)" required autocomplete="text" rows="4"></textarea>
         </div>
 
         <div class="Post-box__btn">

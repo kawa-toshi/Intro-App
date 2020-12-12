@@ -79,6 +79,22 @@ $breakpoints: (
     text-decoration: none;
 }
 
+.Image-field {
+    display: block;
+    padding: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    color: #1b1b1b;
+    background: #fff;
+    border: 1px solid #1b1b1b;
+    &:hover {
+        background: #1b1b1b;
+        color: #fff;
+        cursor: pointer;
+        text-decoration: none;
+    }
+}
+
 // header
 .Menu {
     display: flex;
@@ -190,4 +206,15 @@ $breakpoints: (
 
 .Big {
     animation: rotation 0.5s ease 0s 1 alternate none running;
+}
+
+.Error_message {
+    color: red;
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+    @include mq("sp") {
+        font-size: 8px;
+        width: 100%;
+    }
 }

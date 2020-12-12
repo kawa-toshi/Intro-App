@@ -67,6 +67,23 @@
   text-decoration: none;
 }
 
+.Image-field {
+  display: block;
+  padding: 0.8em;
+  text-align: center;
+  text-decoration: none;
+  color: #1b1b1b;
+  background: #fff;
+  border: 1px solid #1b1b1b;
+}
+
+.Image-field:hover {
+  background: #1b1b1b;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .Menu {
   display: flex;
   justify-content: space-evenly;
@@ -210,6 +227,20 @@
           animation: rotation 0.5s ease 0s 1 alternate none running;
 }
 
+.Error_message {
+  color: red;
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+}
+
+@media screen and (max-width: 767px) {
+  .Error_message {
+    font-size: 8px;
+    width: 100%;
+  }
+}
+
 .Cover-image-area {
   width: 100%;
 }
@@ -309,6 +340,7 @@
   border: blue solid 1px;
   padding: 10px;
   font-weight: bold;
+  width: 160px;
 }
 
 .User__follow-btn:hover {
@@ -321,6 +353,7 @@
   padding: 10px;
   font-weight: bold;
   color: white;
+  width: 160px;
 }
 
 .User-detail {

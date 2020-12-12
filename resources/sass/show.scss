@@ -1,6 +1,15 @@
+@import "./varia";
+@import "./mixin";
+
 .Flex {
-    width: 1180px;
+    width: $layout-width-inner;
     margin: 30px auto;
+    @include mq("tab") {
+        width: 100%;
+    }
+    @include mq("sp") {
+        width: 100%;
+    }
 }
 
 body {
@@ -39,6 +48,12 @@ body {
     }
     &__title-box {
         display: flex;
+        @include mq("tab") {
+            width: 100%;
+        }
+        @include mq("sp") {
+            display: block;
+        }
     }
     &__heading {
         font-size: 30px;
@@ -64,9 +79,13 @@ body {
 
 .Btn-wrraper {
     margin: 0 0 0 auto;
-    // width: 20px;
     display: flex;
-
+    justify-content: flex-end;
+    @include mq("sp") {
+        margin: 0;
+        flex-direction: column;
+        align-items: center;
+    }
     a {
         display: block;
     }
@@ -77,6 +96,13 @@ body {
     background-color: #fff;
     width: 60%;
     padding: 40px;
+    @include mq("tab") {
+        width: 100%;
+    }
+    @include mq("sp") {
+        width: 100%;
+        padding: 0;
+    }
     &__text {
         margin: 20px 0 0 20px;
         min-height: 50px;
@@ -89,14 +115,22 @@ body {
     margin: 20px auto;
     background-color: #fff;
     padding: 40px;
+    @include mq("tab") {
+        width: 100%;
+    }
+    @include mq("sp") {
+        width: 100%;
+        padding: 0;
+    }
     &__content {
         display: flex;
+        padding: 10px 0;
     }
     &__textarea {
         width: 80%;
         color: black;
         display: block;
-        margin: 0 auto;
+        margin: 20px auto 0;
         border: black 1px solid;
         line-height: 30px;
         &::placeholder {
@@ -124,20 +158,10 @@ body {
 
 .Comment-submit {
     display: flex;
-    justify-content: space-between;
-    &__btn {
-        font-size: 14px;
-        display: block;
-        background-color: white;
-        width: 150px;
-        border-radius: 10px;
-        border: 1px solid blue;
-        padding: 10px;
-        margin: 10px 0 0 auto;
-        &:hover {
-            background-color: blue;
-            color: white;
-        }
+    justify-content: flex-end;
+    margin: 20px 10px 0 0;
+    @include mq("sp") {
+        padding: 10px 0;
     }
 }
 
@@ -147,20 +171,8 @@ body {
     margin: 0 auto;
     padding: 10px;
     text-align: center;
-}
-
-.Btn {
-    font-size: 14px;
-    display: block;
-    background-color: white;
-    width: 150px;
-    border-radius: 10px;
-    border: 1px solid blue;
-    padding: 10px;
-    margin: 10px 0 0 auto;
-    &:hover {
-        background-color: blue;
-        color: white;
+    @include mq("sp") {
+        width: 80%;
     }
 }
 
@@ -175,4 +187,20 @@ body {
 
 .Hide-message {
     display: none;
+}
+
+#commentDeleteBtn {
+    display: block;
+    padding: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    color: #1b1b1b;
+    background: #fff;
+    border: 1px solid #1b1b1b;
+    &:hover {
+        background: #1b1b1b;
+        color: #fff;
+        cursor: pointer;
+        text-decoration: none;
+    }
 }

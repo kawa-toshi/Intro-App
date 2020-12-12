@@ -11,33 +11,34 @@
 <x-app-layout>
 
   <x-slot name="header">
-    <div class="Flex">
-      <h2 class="Flex__top-menu--bold">
+    <nav class="Menu">
+      <h2 class="Menu__item--bold">
           投稿一覧
       </h2>
-      <a href="{{ route('post') }}" class="Flex__top-menu">
+      <!-- <a href="{{ route('post') }}" class="Flex__top-menu">
           投稿一覧
-      </a>
+      </a> -->
       <!-- ここifに変える -->
       @if($my_introduction)
-      <a href="{{ route('create') }}"  class="Flex__top-menu">
+      <a href="{{ route('create') }}"  class="Menu__item ">
           新規投稿
       </a>
       @else
-      <a href="#" id="introduction_pop" class="Flex__top-menu">
-          新規投稿(この機能を利用するにはプロフィール登録が必要です)
+      <a href="#" id="introduction_pop" class="Menu__item ">
+          新規投稿(プロフィール登録必須)
       </a>
       @endif
-      <a href="/introductions/{{ $user->id }}" class="Flex__top-menu">
+      <a href="/introductions/{{ $user->id }}" class="Menu__item">
           マイページ
       </a>
-      </div>
+    </nav>
   </x-slot>
+
   <!-- プロフィール登録のポップアップ -->
   <div class="Profile-modal" id="js-modal">
     <div class="Profile-modal__bg" id="js-modal-close"></div>
     <div class="Profile-modal__content">
-      <p class="Profile-modal__content-title">新規投稿するには簡単なプロフィールの登録が必要です！！</p>
+      <p class="Profile-modal__content-title">簡単なプロフィールの登録が必要です！！</p>
       <div class="Profile-modal__content-btn-box" >
         <a id="js-modal-close" class="Profile-modal__content-back Btn-gradient--red" href="">閉じる</a>
         <a href="/introductions/create" class="Profile-modal__content-register Btn-gradient">プロフィール登録へ</a>

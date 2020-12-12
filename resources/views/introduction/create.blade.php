@@ -60,8 +60,8 @@
         </p>
       </div>
       <div class="User-follow">
-        <p class="User-follow__follow">87フォロー</p>
-        <p class="User-follow__follower">100フォロワー</p>
+        <p class="User-follow__follow"><span>87</span>フォロー</p>
+        <p class="User-follow__follower"><span>100</span>フォロワー</p>
       </div>
     </div>
   </div>
@@ -74,14 +74,14 @@
         @csrf
 
         <div class="Post-box__profile-image">
-          <p>プロフィール画像</p>
+          
           <label for="Profile-image" class="Image-field">プロフィール画像を登録
             <input type="file" name="profile_image_path"  id="Profile-image">
           </label>
         </div>
 
         <div class="Post-box__cover-image">
-          <p>カバー画像</p>
+          
           <label for="Cover-image" class="Image-field">カバー画像を登録
             <input type="file" name="profile_cover_image_path"  id="Cover-image">
           </label>
@@ -89,10 +89,7 @@
 
 
         <div class="Post-box__content">
-          
-            <p>プロフィール詳細</p>
-            <textarea class="Post-box__content-text" name="profile_message" placeholder="内容" required autocomplete="text" rows="4"></textarea>
-          
+          <textarea class="Post-box__content-text" name="profile_message" placeholder="プロフィール詳細" required autocomplete="text" rows="4"></textarea>
         </div>
 
         <div class="Post-box__btn">

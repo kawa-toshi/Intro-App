@@ -26,19 +26,11 @@ class PostsController extends Controller
 
         $posts = Post::paginate(4);
         $introductions = Introduction::all();
-        
         $introduction = new Introduction();
-        
         // ユーザーとプロフィールを結びつける？
         // ポスト一つをとる
-        
         $my_introduction = $introduction->where('user_id', $user_id)->get()->first();  // プロフィールを取得
         // postのイントロダクションをとる
-        
-        
-        
-
-         
         $data = [];
         $favorite_model = new Favorite;
         $data = [
@@ -301,6 +293,7 @@ class PostsController extends Controller
       $text = $request->text;  // コメントの内容
       $introduction = new Introduction();
       $my_introduction = $introduction->where('user_id', $user_id)->get()->first();
+      $introduction_id = $my_introduction->id;
       // プロフィールがあるかどうか 修正必要
       if($my_introduction){
       $profile_image = $my_introduction->profile_image_path;
@@ -309,6 +302,7 @@ class PostsController extends Controller
       $comment->user_id = $user_id;
       $comment->post_id = $post_id;
       $comment->text = $text;
+      $comment->introduction_id = $introduction_id;
       $comment->save();
       $created_at = $comment->created_at->format('Y-m-d H:i');
       $comment_id = $comment->id;

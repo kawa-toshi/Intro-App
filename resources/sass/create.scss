@@ -32,6 +32,8 @@
         display: flex;
     }
     &__top {
+        width: 300px;
+        margin: 20px auto;
     }
     &__top-heading {
     }
@@ -122,15 +124,15 @@
 }
 
 // 画像アップロード
-.Image-field {
-    height: 50px;
-    display: block;
-    background-color: wheat;
-    width: 200px;
-    margin: 10px auto;
-    text-align: center;
-    line-height: 50px;
-}
+// .Image-field {
+//     height: 50px;
+//     display: block;
+//     background-color: wheat;
+//     width: 200px;
+//     margin: 10px auto;
+//     text-align: center;
+//     line-height: 50px;
+// }
 
 #Post-image {
     display: none;

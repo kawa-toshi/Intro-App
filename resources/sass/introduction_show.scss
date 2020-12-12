@@ -1,16 +1,6 @@
 @import "./varia";
 @import "./mixin";
 
-.Menu {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    &__item--bold {
-        font-weight: bold;
-        font-size: 16px;
-    }
-}
-
 .Cover-image-area {
     width: 100%;
 
@@ -34,12 +24,23 @@
     padding: 40px 0;
     display: flex;
     background: white;
+    @include mq("tab") {
+        width: 100%;
+    }
+    @include mq("sp") {
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-around;
+    }
     &__left {
         width: 200px;
         height: 200px;
         margin: 0 40px;
         object-fit: cover;
         border-radius: 100px;
+        @include mq("sp") {
+            margin: 0 auto;
+        }
     }
     &__left-none {
         width: 200px;
@@ -53,6 +54,9 @@
     &__right {
         margin-left: 20px;
         width: 80%;
+        @include mq("sp") {
+            margin: 20px auto;
+        }
     }
     &__right-followed {
         font-size: $font-small;
@@ -122,6 +126,12 @@
     font-size: 28px;
     border-bottom: black 1px solid;
     padding: 10px 0;
+    @include mq("tab") {
+        width: 100%;
+    }
+    @include mq("sp") {
+        width: 100%;
+    }
 }
 
 // 使い回し 投稿一覧画面
@@ -131,6 +141,12 @@
     justify-content: space-between;
     width: $layout-width-inner;
     margin: 0 auto;
+    @include mq("tab") {
+        width: 100%;
+    }
+    @include mq("sp") {
+        width: 100%;
+    }
     a {
         display: block;
     }
@@ -146,6 +162,9 @@
     width: 50%;
     background-color: #fff;
     margin: 20px auto;
+    @include mq("sp") {
+        width: 80%;
+    }
     &__title {
         font-size: 24px;
         margin: 10px 0;
@@ -159,14 +178,13 @@
     }
     &__image-content {
         width: 100%;
-        height: 200px;
-        object-fit: cover;
+        height: 300px;
     }
     &__image-content-none {
         width: 100%;
-        height: 200px;
+        height: 300px;
         text-align: center;
-        line-height: 200px;
+        line-height: 300px;
         background-color: whitesmoke;
         border: black solid 1px;
     }
@@ -201,6 +219,9 @@
         justify-content: space-evenly;
         align-items: center;
         flex-direction: column;
+        @include mq("sp") {
+            display: none;
+        }
     }
     &__comment {
         display: flex;

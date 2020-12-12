@@ -1,4 +1,5 @@
 @extends('layouts/master')
+
 @push('css')
     <link href="{{ mix('css/introduction/introduction_show.css') }}" rel="stylesheet">
 @endpush
@@ -15,12 +16,14 @@
       <a href="{{ route('post') }}" class="Menu__item">
           投稿一覧
       </a>
+      @if($my_introduction)
       <a href="{{ route('create') }}" class="Menu__item">
           新規投稿
       </a>
-      <a href="/introductions/{{ $user->id }}" class="Menu__item">
+      @endif
+      <!-- <a href="/introductions/{{ $user->id }}" class="Menu__item">
           マイページ
-      </a>
+      </a> -->
       
       @unless($introduction_user)
       <a href="/introductions/create" class="Menu__item">
@@ -35,6 +38,10 @@
       @endunless
     </nav>
   </x-slot>
+
+ 
+
+
   @if($my_introduction)
     @if($profile_cover_photo_url)
     <div class="Cover-image-area">

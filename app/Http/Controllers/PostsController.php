@@ -90,8 +90,9 @@ class PostsController extends Controller
         $path = Storage::disk('s3')->putFile('post-image', $image, 'public');
         $data = $request->all();
         $rules =  [
-            'title' => ['required'],
-            'content' => ['required']
+            'title' => ['required', 'max:25'],
+            'content' => ['required'],
+            'image_path' => ['image']
         ];
         $this->validate($request, $rules);
 
@@ -107,7 +108,7 @@ class PostsController extends Controller
 
         $data = $request->all();
         $rules =  [
-            'title' => ['required'],
+            'title' => ['required', 'max:25'],
             'content' => ['required']
         ];
         $this->validate($request, $rules);

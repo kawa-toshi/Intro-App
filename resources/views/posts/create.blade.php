@@ -49,28 +49,34 @@
 
         <div id="PreviewArea"></div>
         <div class="Post-box__top">
-          <label for="Post-image" class="Image-field simple_square_btn">
+          <label for="Post-image" class="Image-field">
             <i class="fas fa-camera"></i>
             トップ画像を投稿できます
             <input type="file" name="image_path"  id="Post-image">
           </label>
         </div>
 
+        @if ($errors->has('image_path'))
+          <div class="Error_message">
+            {{ $errors->first('image_path')}}
+          </div>
+        @endif
+
         <div class="Post-box__content">
           <div class="App-name">
             
-            <input type="text" class="Post-box__content-title" name="title" placeholder="アプリ名" required autocomplete="text" rows="4"></input>
+            <input type="text" class="Post-box__content-title" name="title" placeholder="アプリ名(25字以内)" required autocomplete="text" rows="4"></input>
             @if ($errors->has('title'))
-            <div>
+            <div class="Error_message">
               {{ $errors->first('title')}}
             </div>
-          @endif
+            @endif
           </div>
           <div class="App-overview">
             
-            <textarea class="Post-box__content-text" name="content" placeholder="内容" required autocomplete="text" rows="4"></textarea>
-            @if ($errors->has('title'))
-            <div>
+            <textarea class="Post-box__content-text" name="content" placeholder="アプリの概要(3000字以内)" required autocomplete="text" rows="4"></textarea>
+            @if ($errors->has('content'))
+            <div class="Error_message">
               {{ $errors->first('content')}}
             </div>
             @endif

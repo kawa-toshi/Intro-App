@@ -6,30 +6,30 @@
 @section('content')
 
 <x-app-layout>
-  
+
 
   <x-slot name="header">
-    <div class="Flex">
-      <h2 class="Flex__top-menu--bold">
+    <nav class="Menu">
+      <h2 class="Menu__item--bold">
           新規投稿
       </h2>
-      <a href="{{ route('post') }}" class="Flex__top-menu">
+      <a href="{{ route('post') }}" class="Menu__item">
           投稿一覧
       </a>
       <!-- ここifに変える -->
       @if($my_introduction)
-      <a href="{{ route('create') }}"  class="Flex__top-menu">
+      <a href="{{ route('create') }}"  class="Menu__item">
           新規投稿
       </a>
       @else
-      <a href="#" id="introduction_pop" class="Flex__top-menu">
+      <a href="#" id="introduction_pop" class="Menu__item">
           新規投稿(この機能を利用するにはプロフィール登録が必要です)
       </a>
       @endif
-      <a href="/introductions/{{ $user->id }}" class="Flex__top-menu">
+      <a href="/introductions/{{ $user->id }}" class="Menu__item">
           マイページ
       </a>
-      </div>
+    </nav>
   </x-slot>
 
 
@@ -49,8 +49,9 @@
 
         <div id="PreviewArea"></div>
         <div class="Post-box__top">
-         
-          <label for="Post-image" class="Image-field">トップ画像を投稿できます
+          <label for="Post-image" class="Image-field simple_square_btn">
+            <i class="fas fa-camera"></i>
+            トップ画像を投稿できます
             <input type="file" name="image_path"  id="Post-image">
           </label>
         </div>

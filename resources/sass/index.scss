@@ -206,17 +206,41 @@
         top: 50%;
         transform: translate(-50%, -50%);
         width: 60%;
+        @include mq("tab") {
+            width: 100%;
+        }
+        @include mq("sp") {
+            width: 100%;
+            padding: 0;
+            height: 200px;
+        }
     }
     &__content-title {
         margin: 40px auto;
         font-size: 30px;
         width: 90%;
+        text-align: center;
+        @include mq("tab") {
+        }
+        @include mq("sp") {
+            font-size: 14px;
+            margin: 40px auto;
+            width: 100%;
+            text-align: center;
+        }
     }
     &__content-btn-box {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         width: 50%;
         margin: 100px auto;
+        @include mq("tab") {
+            width: 100%;
+        }
+        @include mq("sp") {
+            width: 100%;
+            margin: 0 auto;
+        }
     }
     &__content-register {
     }

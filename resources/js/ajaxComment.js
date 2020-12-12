@@ -1,5 +1,5 @@
 $(function() {
-    var comment = $(".Comment-submit__btn");
+    var comment = $(".simple_square_btn");
     var likePostId;
 
     comment.on("click", function() {
@@ -44,7 +44,8 @@ $(function() {
                     <div class="Btn-wrraper">
                       <form method="DELETE" action="http://localhost:8888/ajaxCommentDelete">
                           <button type="submit" id="commentDeleteBtn" data-comment_id=${data.comment_id}>
-                            削除
+                          <i class="fas fa-trash"></i>
+                            削除する
                           </button>
                       </form>
                     </div>
@@ -71,7 +72,8 @@ $(function() {
                     <div class="Btn-wrraper">
                       <form method="DELETE" action="http://localhost:8888/ajaxCommentDelete">
                           <button type="submit" id="commentDeleteBtn" data-comment_id=${data.comment_id}>
-                            削除
+                          <i class="fas fa-trash"></i>
+                            削除する
                           </button>
                       </form>
                     </div>

@@ -27,20 +27,30 @@
   <div class="Preview-box">
     <h2 class="Preview-box__title">PREVIEW</h2>
   <div class="Cover-image-area">
-    <img src="{{ $profile_cover_photo_url }}" class="Cover-image-area__content">
+    @if($profile_cover_photo_url)
+      <img src="{{ $profile_cover_photo_url }}" class="Cover-image-area__content">
+    @else
+      <p class="Cover-image-area__content-none">画像がありません</p>
+    @endif
   </div>
 
   <div id="Cover-preview-area">
   </div>
 
   <div class="Profile-area">
-    <img class="Profile-area__left" src="{{ $user->profile_photo_url }}"alt="{{ Auth::user()->name }}" />
+    @if($profile_photo_url)
+      <img class="Profile-area__left" src="{{ $profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+    @else
+      <p class="Profile-area__left-none">画像がありません</p>
+    @endif
+  
+    
+  
     <div id="Profile-preview-area"></div>
 
     <div class="Profile-area__right">
       <div class="User">
         <p class="User__name">{{ $user -> name}}</p>
-
       </div>
       <div class="User-detail">
         <p class="User-detail__content">プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明プロフィールの説明
@@ -49,8 +59,8 @@
         </p>
       </div>
       <div class="User-follow">
-        <p class="User-follow__follow">87フォロー</p>
-        <p class="User-follow__follower">100フォロワー</p>
+        <p class="User-follow__follow"><span>87</span>フォロー</p>
+        <p class="User-follow__follower"><span>100</span>フォロワー</p>
       </div>
     </div>
   </div>
@@ -63,25 +73,24 @@
         @csrf
         <input type="hidden" name="id" value="{{ $introduction_id }}">
         <div class="Post-box__profile-image">
-          <p>プロフィール画像</p>
-          <label for="Profile-image" class="Image-field">プロフィール画像を登録
+          <label for="Profile-image" class="Image-field simple_square_btn">
+          <i class="fas fa-camera-retro"></i>
+            プロフィール画像を登録
             <input type="file" name="profile_image_path"  id="Profile-image">
           </label>
         </div>
 
         <div class="Post-box__cover-image">
-          <p>カバー画像</p>
-          <label for="Cover-image" class="Image-field">カバー画像を登録
+          <label for="Cover-image" class="Image-field simple_square_btn">
+          <i class="fas fa-camera"></i>
+            カバー画像を登録
             <input type="file" name="profile_cover_image_path"  id="Cover-image">
           </label>
         </div>
 
 
         <div class="Post-box__content">
-          
-            <p>プロフィール詳細</p>
-            <textarea class="Post-box__content-text" name="profile_message" placeholder="内容" required autocomplete="text" rows="4"></textarea>
-          
+          <textarea class="Post-box__content-text" name="profile_message" placeholder="プロフィール詳細" required autocomplete="text" rows="4"></textarea>
         </div>
 
         <div class="Post-box__btn">

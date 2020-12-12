@@ -5,6 +5,21 @@
     display: flex;
     justify-content: space-between;
     font-size: 14px;
+    @include mq("sp") {
+        flex-direction: column;
+    }
+    &__item {
+        @include mq("sp") {
+            margin-top: 10px;
+        }
+    }
+    &__item--bold {
+        font-weight: bold;
+        font-size: 16px;
+        @include mq("sp") {
+            margin: 5px 0;
+        }
+    }
 }
 
 .Preview-box {
@@ -47,37 +62,60 @@
 #Profile-preview-area {
     display: none;
     &__image {
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
-        margin: 0 10px;
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+        object-fit: cover;
+        margin: 0 40px;
+        @include mq("sp") {
+            margin: 0 auto;
+        }
     }
 }
 
 .Profile-area {
-    width: 60%;
+    width: $layout-width-inner;
     margin: 20px auto 0;
     padding: 40px 0;
     display: flex;
     background: white;
+    @include mq("tab") {
+        width: 100%;
+    }
+    @include mq("sp") {
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-around;
+    }
     &__left {
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+        object-fit: cover;
+        margin: 0 40px;
+        @include mq("sp") {
+            margin: 0 auto;
+        }
     }
     &__left-none {
-        width: 100px;
-        height: 100px;
-        margin: 0 10px;
-        border-radius: 50px;
-        font-size: 4px;
-        line-height: 100px;
+        width: 200px;
+        height: 200px;
+        margin: 0 40px;
+        border-radius: 100px;
+        line-height: 200px;
         text-align: center;
         background-color: whitesmoke;
     }
     &__right {
         margin-left: 20px;
         width: 80%;
+        @include mq("sp") {
+            margin: 20px auto;
+        }
+    }
+    &__right-followed {
+        font-size: $font-small;
+        color: $main-color;
     }
 }
 
@@ -108,9 +146,21 @@
 
 .User-follow {
     display: flex;
+    padding: 10px 0;
     &__follow {
+        span {
+            font-size: 24px;
+            padding-right: 10px;
+            font-weight: bold;
+        }
     }
     &__follower {
+        margin-left: 10px;
+        span {
+            font-size: 24px;
+            padding-right: 10px;
+            font-weight: bold;
+        }
     }
 }
 
@@ -128,7 +178,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 980px;
+    width: $layout-width-inner;
     margin: 0 auto;
     a {
         display: block;
@@ -142,10 +192,16 @@
 }
 
 .Wrapper {
-    width: 50%;
+    width: $layout-width-inner;
     margin: 0 auto;
     background-color: white;
     margin-top: 50px;
+    @include mq("tab") {
+        width: 100%;
+    }
+    @include mq("sp") {
+        width: 100%;
+    }
     &__title {
         font-size: 28px;
         display: inline-block;
@@ -154,6 +210,10 @@
         width: 200px;
         margin: 20px;
         padding: 20px;
+        @include mq("sp") {
+            margin: 0 auto;
+            display: block;
+        }
     }
 }
 
@@ -162,14 +222,24 @@
     background-color: #fff;
     margin: 10px auto;
     &__profile-image {
-        display: flex;
-        justify-content: space-between;
         padding: 20px 0;
+        margin: 0 auto;
+        width: 300px;
+        text-align: center;
+        @include mq("sp") {
+            width: 240px;
+            margin-top: 20px;
+        }
     }
     &__cover-image {
-        display: flex;
-        justify-content: space-between;
         padding: 20px 0;
+        margin: 0 auto;
+        width: 300px;
+        text-align: center;
+        @include mq("sp") {
+            width: 240px;
+            margin-top: 10px;
+        }
     }
     &__content {
         display: flex;
@@ -178,13 +248,18 @@
     }
     &__content-text {
         display: block;
-        height: 200px;
+        height: 400px;
         width: 60%;
         border: black 1px solid;
+        margin: 0 auto;
+        @include mq("sp") {
+            min-width: 250px;
+        }
     }
     &__btn {
         display: flex;
         justify-content: space-between;
+        margin: 20px;
     }
 }
 
@@ -196,68 +271,10 @@
     }
 }
 
-@keyframes rotation {
-    0% {
-        transform: scale(1.8);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-.loved .fa-heart {
-    color: red;
-}
-
-.fa-heart {
-    color: rgba(226, 223, 223, 0.432);
-}
-
-.Big {
-    animation: rotation 0.5s ease 0s 1 alternate none running;
-}
-
 #Profile-image {
     display: none;
 }
 
 #Cover-image {
     display: none;
-}
-
-// 使い回し まとめられるかも
-.Btn-gradient {
-    color: #fff;
-    border: 2px solid #fff;
-    font-size: 20px;
-    margin: 20px 0;
-    border-radius: 0;
-    background-image: linear-gradient(to right, #707efa 0%, #40e1fe 100%);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    text-align: center;
-    line-height: 50px;
-    &:hover {
-        transform: translate(0, -2px);
-        color: #fff;
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    }
-    &--red {
-        background-image: linear-gradient(to right, #f38d8dfa 0%, #fe4040 100%);
-        color: #fff;
-        border: 2px solid #fff;
-        font-size: 20px;
-        margin: 20px 0;
-        border-radius: 0;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        width: 200px;
-        text-align: center;
-        line-height: 50px;
-        &:hover {
-            transform: translate(0, -2px);
-            color: #fff;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-    }
 }

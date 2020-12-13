@@ -15,7 +15,7 @@
       @if (Route::has('login'))
       <div class="header__nav">
         @auth
-          <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">投稿一覧</a>
+          <a href="{{ url('/posts') }}" class="text-sm text-gray-700 underline">投稿一覧</a>
         @else
           <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">ログイン</a>
 

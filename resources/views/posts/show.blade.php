@@ -11,7 +11,7 @@
   <x-slot name="header">
     <nav class="Menu">
       <h2 class="Menu__item--bold">
-          投稿一覧
+          投稿詳細
       </h2>
       @if($my_introduction)
       <a href="{{ route('create') }}"  class="Menu__item">
@@ -22,6 +22,9 @@
           新規投稿(プロフィール登録必須)
       </a>
       @endif
+      <a href="{{ route('post') }}" class="Menu__item">
+          投稿一覧
+      </a>
       <a href="/introductions/{{ $user->id }}" class="Menu__item">
           マイページ
       </a>

@@ -39,12 +39,14 @@
             <!-- Page Heading -->
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <!-- <x-slot name=”header”>のx-slotタグで囲まれたコンテンツを表示させることができる。名前付きスロット -->
                     {{ $header }}
                 </div>
             </header>
 
             <!-- Page Content -->
             <main>
+                <!-- x-app-layoutで囲んだ部分が入る -->
                 {{ $slot }}
             </main>
         </div>

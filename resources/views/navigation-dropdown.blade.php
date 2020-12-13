@@ -11,24 +11,6 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <!-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('post') }}" :active="request()->routeIs('dashboard')">
-                        投稿一覧
-                    </x-jet-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('create') }}" :active="request()->routeIs('dashboard')">
-                        新規投稿
-                    </x-jet-nav-link>
-                </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="/introductions" :active="request()->routeIs('dashboard')">
-                    
-                     新規投稿
-                    </x-jet-nav-link>
-                </div> -->
             </div>
 
             <!-- Settings Dropdown -->

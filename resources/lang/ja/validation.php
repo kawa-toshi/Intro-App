@@ -152,6 +152,10 @@ return [
       'image_path' => 'トップ画像',
       'profile_image_path' => 'プロフィール画像',
       'profile_cover_image_path' => 'カバー画像',
-      'profile_message' => 'プロフィール詳細'],
+      'profile_message' => 'プロフィール詳細',
+      'password' => 'パスワード',
+      'current_password' => '現在のパスワード',
+      'email' => 'メールアドレス',
+      'name' => 'ニックネーム'],
 
 ];

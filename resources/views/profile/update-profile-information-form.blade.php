@@ -1,4 +1,9 @@
+
 <x-jet-form-section submit="updateProfileInformation">
+<!-- form-section.blade.phpに対応 -->
+<!-- Blade Componentsではpropsを使ってComponentに対し値を渡すことができる。 -->
+
+<!-- バリデーションなどの変更はApp\Actions\Fortify\UpdateUserProfileInformation.php -->
 
     <x-slot name="title">
         ユーザー情報
@@ -57,14 +62,16 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('Name') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
+            <x-jet-label for="name" value="ニックネーム" />
+            <!-- データビンディング state.nameでユーザー情報にアクセスしている 例 <div>{{ $state['name']}}</div>-->
+            <!-- state.nameに入った内容をinput要素に表示させるだけではなくinput要素に入力した値をstateのnameに反映させることができる。 -->
+            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" /> 
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="email" value="{{ __('Email') }}" />
+            <x-jet-label for="email" value="メールアドレス" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
@@ -72,7 +79,7 @@
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+            保存しました
         </x-jet-action-message>
 
         <x-jet-button wire:loading.attr="disabled" wire:target="photo">

@@ -1,15 +1,15 @@
 <x-jet-action-section>
     <x-slot name="title">
-        {{ __('Browser Sessions') }}
+        ブラウザーセッション
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Manage and logout your active sessions on other browsers and devices.') }}
+        他のブラウザやデバイスでアクティブなセッションを管理してログアウトします。
     </x-slot>
 
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-600">
-            {{ __('If necessary, you may logout of all of your other browser sessions across all of your devices. If you feel your account has been compromised, you should also update your password.') }}
+          全てのブラウザからログアウトできます。アカウントが侵害された可能性がある場合は、パスワードを更新することをおすすめします。
         </div>
 
         @if (count($this->sessions) > 0)
@@ -53,7 +53,7 @@
 
         <div class="flex items-center mt-5">
             <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
-                {{ __('Logout Other Browser Sessions') }}
+                他のブラウザセッションからログアウトする
             </x-jet-button>
 
             <x-jet-action-message class="ml-3" on="loggedOut">
@@ -64,11 +64,11 @@
         <!-- Logout Other Devices Confirmation Modal -->
         <x-jet-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">
-                {{ __('Logout Other Browser Sessions') }}
+                他のブラウザセッションからログアウトする
             </x-slot>
 
             <x-slot name="content">
-                {{ __('Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.') }}
+                他のブラウザセッションからログアウトするには、パスワードを入力してください。
 
                 <div class="mt-4" x-data="{}" x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-jet-input type="password" class="mt-1 block w-3/4" placeholder="{{ __('Password') }}"
@@ -82,11 +82,11 @@
 
             <x-slot name="footer">
                 <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
-                    {{ __('Nevermind') }}
+                    ログアウトしない
                 </x-jet-secondary-button>
 
                 <x-jet-button class="ml-2" wire:click="logoutOtherBrowserSessions" wire:loading.attr="disabled">
-                    {{ __('Logout Other Browser Sessions') }}
+                    ログアウトする
                 </x-jet-button>
             </x-slot>
         </x-jet-dialog-modal>
